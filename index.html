@@ -102,10 +102,323 @@
       </div>
     </div>
     <script>
-      const multivanal = "o";
-      const discrim = " h";
-      const companal = "e";
-      const factanal = "l";
+      const multivanal = `import numpy as np
+n1=int(input("enter no of treatements"))
+p=[]
+for i in range(n1):
+  p.append(int(input("enter no of subgroups in treatements")))
+a=[]
+for i in range(len(p)):
+ b=[]
+ for j in range(p[i]):
+  q=[int(x) for x in input().split(" ")]
+ b.append(q)
+ a.append(b)
+print(a)
+yii=[]
+ybar=[]
+sum2=0
+sum3=0
+k=0
+for i in range(n1):
+ sum=0
+ sum1=0
+ yi=[]
+ for j in range(p[i]):
+  sum=sum+a[i][j][0]
+  sum1=sum1+a[i][j][1]
+  sum2=sum2+a[i][j][0]
+  sum3=sum3+a[i][j][1]
+ k=k+p[i]
+ sum=sum/p[i]
+ sum1=sum1/p[i]
+ yi.append(sum)
+ yi.append(sum1)
+ yii.append(yi)
+sum2=sum2/k
+sum3=sum3/k
+ybar.append(sum2)
+ybar.append(sum3)
+print(yii)
+print(ybar)
+#y1 and y2 and cross product of y1,y2
+sse1=sst1=sse2=sst2=sse12=sst12=0
+for i in range(n1):
+ for j in range(p[i]):
+  sse1=sse1+((a[i][j][0]-yii[i][0])**2)
+  sst1=sst1+((a[i][j][0]-ybar[0])**2)
+  sse2=sse2+((a[i][j][1]-yii[i][1])**2)
+  sst2=sst2+((a[i][j][1]-ybar[1])**2)
+  sse12=sse12+((a[i][j][0]*a[i][j][1])-(yii[i][0]*yii[i][1]))
+  sst12=sst12+((a[i][j][0]*a[i][j][1])-(ybar[0]*ybar[1]))
+print('for y1 ')
+print('sse : ',sse1)
+print('sst : ',sst1)
+ssr1=sst1-sse1
+print('ssr : ',ssr1)
+print('for y2 ')
+print('sse : ',sse2)
+print('sst : ',sst2)
+ssr2=sst2-sse2
+print('ssr : ',ssr2)
+print('cross product values of y1 and y2 ')
+print('sse : ',sse12)
+print('sst : ',sst12)
+ssr12=sst12-sse12
+print('ssr : ',ssr12)
+w1=[sse1,sse12,sse12,sse2]
+t1=[sst1,sst12,sst12,sst2]
+w=(w1[0]*w1[3])-(w1[1]*w1[2])
+t=(t1[0]*t1[3])-(t1[1]*t1[2])
+delta=w/t
+#f-test
+from math import sqrt
+f=((k-n1-1)/(n1-1))*((1-sqrt(delta))/sqrt(delta))
+print('f calculated value is :',f)
+import scipy.stats as stats
+p=len(a[0][0])
+ftab=stats.f.ppf(1-0.05,p*(n1-1),p*(k-n1-1))
+print('f table value is :',ftab)
+if(f>ftab):
+ print("Reject Null Hypothesis")
+else:
+ print("Accept Null Hypothesis")`;
+      const discrim = `#reading inputs
+import numpy as np
+def transpose(A):
+ r=len(A)
+ c=len(A[0])
+ s=[]
+ for i in range(0,c):
+  n=[]
+  for j in range(0,r):
+    n.append(A[j][i])
+  s.append(n)
+ return s
+#matrix multiplication
+def multiplication(A,B):
+ res=[]
+ r1=len(A)
+ c2=len(B[0])
+ for i in range(r1):
+  k=[]
+  for j in range(c2):
+    k.append(0)
+  res.append(k)
+ for i in range(len(A)):
+  for j in range(len(B[0])):
+    for k in range(len(B)):
+      res[i][j]=res[i][j]+A[i][k]*B[k][j]
+ return res
+def getMinor(m,i,j):
+ return [row[:j] + row[j+1:] for row in (m[:i]+m[i+1:])]
+def getDeternminant(m):
+ #base case for 2x2 matrix
+ if len(m) == 2:
+  return m[0][0]*m[1][1]-m[0][1]*m[1][0]
+ determinant = 0
+ for c in range(len(m)):
+  determinant += ((-1)**c)*m[0][c]*getDeternminant(getMinor(m,0,c))
+ return determinant
+def inverse(m):
+ determinant = getDeternminant(m)
+ #special case for 2x2 matrix:
+ if len(m) == 2:
+  return [[m[1][1]/determinant, -1*m[0][1]/determinant],
+ [-1*m[1][0]/determinant, m[0][0]/determinant]]
+ #find matrix of cofactors
+ cofactors = []
+ for r in range(len(m)):
+  cofactorRow = []
+  for c in range(len(m)):
+    minor = getMinor(m,r,c)
+ cofactorRow.append(((-1)**(r+c)) * getDeternminant(minor))
+ cofactors.append(cofactorRow)
+ cofactors = transpose(cofactors)
+ for r in range(len(cofactors)):
+  for c in range(len(cofactors)):
+    cofactors[r][c] = cofactors[r][c]/determinant
+ return cofactors
+
+n=int(input("enter no of independent variables : "))
+a=[]
+print("enter independent variables")
+for i in range(n):
+ l=[float(x) for x in input().split(" ")]
+ a.append(l)
+print("enter dependent variables")
+Y=[x for x in input().split(" ")]
+X=transpose(a)
+print(X)
+x1=[]
+x2=[]
+for i in range(len(X)):
+ if(Y[i]=='yes'):
+  x1.append(X[i])
+ else:
+  x2.append(X[i])
+#calculating means
+mu=np.mean(X,axis=0)
+mu1=np.mean(x1,axis=0)
+mu2=np.mean(x2,axis=0)
+#calculation of Inverse
+mul=(multiplication((transpose(X-mu)),X-mu))
+ni=len(X)
+c=[]
+for i in range(len(mul)):
+ o=[]
+ for j in range(len(mul[0])):
+  o.append(mul[i][j]/ni)
+ c.append(o)
+print('pooled covariance(c) matrix is : ')
+print(c)
+cinv=inverse(c)
+print('c inverse is : ')
+print(cinv)
+#calculation of Fishers Linear Discriminant Function
+mui=[[mu1],[mu2]]
+n1=len(x1)
+n2=len(x2)
+nii=[n1,n2]
+xk=[float(x) for x in input("enter observation to be classified :").split(" ")]
+f=[]
+for i in range(n):
+  a=multiplication((multiplication(mui[i],cinv)),transpose(mui[i]))
+  for j in range(len(a)):
+    a=a[j][0]/2
+  b=multiplication((multiplication(mui[i],cinv)),transpose([xk]))
+  c=np.log(nii[i]/ni)
+  f.append(b-a+c)
+print(f)
+#classification into groups
+for i in range(1,len(f)):
+ t=f[0]
+ if(f[i]>t):
+  print('classify new observation into',i+1,'population')
+
+ else:
+  print('classify new observation into 1st population') `;
+      const companal = `import numpy as np
+import numpy.linalg as linalg
+import math
+#reading inputs
+a=[]
+n=int(input("enter no of variables"))
+for i in range(n):
+ q=[float(x) for x in input().split(" ")]
+ a.append(q)
+X=np.transpose(a)
+#calculating mean
+print('\nGven Matrix is :\n{}'.format(X))
+print('\nMean Values {}'.format(np.mean(X,axis=0)))
+A = (X - np.mean(X, axis=0))
+print('\nStandardized Matrix is :\n {}'.format(A))
+#variance covariance matrix
+VarCov=np.dot(np.transpose(A),A)/len(X)
+print('\nVariance Covariance Matrix is :\n {}'.format(VarCov))
+#calculating eigen values and vectors
+eigenValues, eigenVectors = linalg.eig(VarCov)
+idx = eigenValues.argsort()[::-1]
+eigenValues = eigenValues[idx]
+ 
+eigenVectors = eigenVectors[:,idx]
+print('\nEigen Values are {}'.format(eigenValues))
+print('\nEigen Vectors are {}'.format(eigenVectors))
+#no of principal components to be retained
+k=int(input("enter threshold limit :"))
+s=sum(eigenValues)
+t=[]
+stoppoint=1
+for i in range(len(eigenValues)):
+ numerator=sum(eigenValues[0:i+1])
+ z=(numerator/s)*100
+ if z<=k:
+  stoppoint=stoppoint+1
+ t.append(z)
+print('\nThreshold Table :\n{}'.format(t))
+eigenValues=eigenValues[0:stoppoint]
+eigenVectors=eigenVectors[:,0:stoppoint]
+#retaining eigen values and vectors
+print('\nRetained Eigen Values :\n{}'.format(eigenValues))
+print('\nRetained Eigen Vectors: \n{}'.format(eigenVectors))
+#printing z1 and z2
+print('\n PCA Matrix :\n{}'.format(np.dot(X,eigenVectors)))`;
+      const factanal = `import numpy as np
+n=int(input("enter no of variables"))
+x=[]
+for i in range(n):
+ p=[int(x) for x in input().split(" ")]
+ x.append(p)
+print(x)
+mu=[]
+for i in range(n):
+ mu.append(np.mean(x[i],axis=0))
+print("mean is : ")
+print(mu)
+from math import sqrt
+from statistics import mean
+n1=len(x[0])
+si=[]
+x=np.array(x)
+for i in range(n):
+ k=sum((x[i]-mu[i])**2)
+ si.append(round(sqrt(k/(n1-1)),4))
+print("variance is :" )
+print(si)
+a=[]
+for i in range(n):
+ a.append((x[i]-mu[i])/si[i])
+print(a)
+A=np.transpose(a)
+#variance covariance matrix
+VarCov=np.dot(np.transpose(A),A)/n1
+print('\nVariance Covariance Matrix is :\n {}'.format(VarCov))
+#calculating eigen values and vectors
+eigenValues, eigenVectors = np.linalg.eig(VarCov)
+idx = eigenValues.argsort()[::-1]
+eigenValues = eigenValues[idx]
+eigenVectors = eigenVectors[:,idx]
+print('\nEigen Values are {}'.format(eigenValues))
+print('\nEigen Vectors are {}'.format(eigenVectors))
+#no of principal components to be retained
+k=int(input("enter threshold limit :"))
+s=sum(eigenValues)
+t=[]
+stoppoint=1
+for i in range(len(eigenValues)):
+ numerator=sum(eigenValues[0:i+1])
+ z=(numerator/s)*100
+ if z<=k:
+  stoppoint=stoppoint+1
+ t.append(z)
+print('\nThreshold Table :\n{}'.format(t))
+eigenValues=eigenValues[0:stoppoint]
+eigenVectors=eigenVectors[:,0:stoppoint]
+#retaining eigen values and vectors
+print('\nRetained Eigen Values :\n{}'.format(eigenValues))
+print('\nRetained Eigen Vectors: \n{}'.format(eigenVectors))
+egv=np.transpose(eigenVectors)
+f=[]
+for i in range(len(egv)):
+ o=[]
+ for j in range(n):
+  k=sqrt(eigenValues[i])*egv[i][j]
+ o.append(k)
+ f.append(o)
+print("F1 and f2 values are :")
+print(f)
+h=[]
+for i in range(len(f[0])):
+ h.append(f[0][i]**2+f[1][i]**2)
+print("h2 values are : ")
+print(h)
+sumh=sum(h)
+print(sumh)
+pve=[]
+for i in range(len(eigenValues)):
+ pve.append((eigenValues[i]/sumh)*100)
+print("percentages are : \n")
+print(pve)`;
       const bestfit = `import numpy as np
 import matplotlib.pyplot as plt
 def lenth(n):
