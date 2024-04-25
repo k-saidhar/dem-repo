@@ -70,9 +70,7 @@
       </div>
       <div class="program">
         <h4>7. Multi linear Regression</h4>
-        <button class="copy-btn" onclick="copyToClipboard(twoanova)">
-          cop
-        </button>
+        <button class="copy-btn" onclick="copyToClipboard(mutli)">cop</button>
       </div>
       <div class="program">
         <h4>8. Multi Variate Regression</h4>
@@ -182,7 +180,75 @@ print('f table value is :',ftab)
 if(f>ftab):
  print("Reject Null Hypothesis")
 else:
- print("Accept Null Hypothesis")`;
+ print("Accept Null Hypothesis")
+ '''import numpy as np
+import scipy.stats as ss
+
+def det(mat):
+    return mat[0,0]*mat[1,1]-mat[0,1]*mat[1,0]
+
+n = int(input("Enter total number of groups: "))
+k = int(input("Enter number of treatments: "))
+p = int(input("Enter the number of observations in each group: "))
+alpha = float(input("Enter Level of Significance: "))
+
+treatments = []
+ybar = np.array([[0,0] for i in range(k)])
+ydbar = np.array([0, 0])
+
+for i in range(k):
+    ni = int(input(f"Enter number of groups in treatment{i+1}: "))
+    treatmentValues = np.empty((0, p))
+
+    for j in range(ni):
+        groups = np.array([float(k) for k in input(f"\tEnter the values of group{j+1}: ").split()])
+        treatmentValues = np.append(treatmentValues, np.array([groups]), axis=0)
+        ybar[i] = ybar[i]+groups
+        ydbar = ydbar + groups
+
+    ybar[i] = ybar[i]/ni
+    treatments.append(treatmentValues)
+
+treatments = np.array(treatments, dtype=object)
+ydbar = ydbar/n
+
+sst1, sse1, sst2, sse2, sst12, sse12 = 0, 0, 0, 0, 0, 0
+for i in range(len(treatments)):
+    for j in treatments[i]:
+        sst1 += (j[0]-ydbar[0])**2
+        sse1 += (j[0]-ybar[i, 0])**2
+        sst2 += (j[1]-ydbar[1])**2
+        sse2 += (j[1]-ybar[i, 1])**2
+        sst12 += j[0]*j[1] - ydbar[0]*ydbar[1]
+        sse12 += j[0]*j[1] - ybar[i, 0]*ybar[i, 1]
+
+ssr1 = sst1 - sse1
+ssr2 = sst2 - sse2
+ssr12 = sst12 - sse12
+
+print('\nFor y1: ')
+print(f'\tSST = {sst1}\n\tSSE = {sse1}\n\tSSR = {ssr1}')
+
+print('\nFor y2: ')
+print(f'\tSST = {sst2}\n\tSSE = {sse2}\n\tSSR = {ssr2}')
+
+print('\nFor cross product of y1 & y2: ')
+print(f'\tSST = {sst12}\n\tSSE = {sse12}\n\tSSR = {ssr12}')
+
+W = np.array([[sse1, sse12], [sse12, sse2]])
+T = np.array([[sst1, sst12], [sst12, sst2]])
+
+lambdaS = det(W)/det(T)
+
+F = ((n-k-1)/(k-1))*(1-lambdaS**0.5)/(lambdaS)**0.5
+Ftab = ss.f.ppf(1-alpha, p*(k-1), p*(n-k-1))
+
+print('Inference: ')
+if F > Ftab:
+    print(f'Fcal > Ftab ({round(F, 2)} > {round(Ftab, 2)}), we reject H0, hence we conclude that there is no homogenity among the treatments')
+else:
+    print(f'Fcal <= Ftab ({round(F, 2)} <= {round(Ftab, 2)}), we accept H0, hence we conclude that there is homogenity among the treatments')
+'''`;
       const discrim = `#reading inputs
 import numpy as np
 def transpose(A):
@@ -586,7 +652,100 @@ def main():
 
 if __name__ == "__main__":
     main()
-`;
+
+'''import pandas as pd
+import numpy as np
+
+def Rankify(data):
+    N = len(data)
+    Ranks = [None for i in range(N)]
+
+    for i in range(N):
+        BigNums = 0
+        SameNums = 0
+
+        for j in range(N):
+            if (data[j] > data[i]):
+                BigNums += 1
+            if (data[j] == data[i]):
+                SameNums += 1
+
+        # Use Fractional Rank formula
+        # fractional_rank = (BigNums+1) + (SameNums-1)/2
+        Ranks[i] = (BigNums+1) + (SameNums-1)/2
+
+    return Ranks
+
+def RemDups(data):
+    set_data = []
+
+    for i in data:
+        if i not in set_data:
+            set_data.append(i)
+
+    return set_data
+
+def CF(x,y):
+    cf = 0
+    x = list(x)
+    y = list(y)
+    set_x = RemDups(x)
+    set_y = RemDups(y)
+
+    for i in set_x:
+        count_x = x.count(i)
+        if count_x > 1:
+            cf += (count_x * (count_x**2 - 1)) / 12
+
+    for i in set_y:
+        count_y = y.count(i)
+        if count_y > 1:
+            cf += (count_y * (count_y**2 - 1)) / 12
+
+    return cf
+
+def SRCC(x,y):
+    n = len(x)
+    m = len(y)
+
+    if n != m:
+        print("Invalid Data!")
+        return
+
+    RankX = np.array(Rankify(x))
+    RankY = np.array(Rankify(y))
+
+    # Difference of Ranks:
+    Di = RankX - RankY
+    DiSq = Di**2
+
+    SumDiSq = sum(DiSq)
+
+    # Correction Factor:
+    cf = CF(x,y)
+    SumDiSq += cf
+
+    SRCC = 1 - ((6 * SumDiSq) / (n * (n**2 - 1)))
+
+    SRCC_Table = {
+        "X values": x,
+        "Y values": y,
+        "Ranks of X": RankX,
+        "Ranks of Y": RankY,
+        "Di values": Di,
+        "Di sq. values": DiSq}
+
+    print(pd.DataFrame(SRCC_Table))
+
+    print("Correction Factor: ",cf)
+    print("Sum of Di sq: ",SumDiSq)
+    print("The Spearman's Ranked Correlation Coefficient of the given data: {:.4f}".format(SRCC))
+
+x = np.array([float(i) for i in input("Enter x values: ").strip().split()])
+y = np.array([float(i) for i in input("Enter y values: ").strip().split()])
+
+SRCC(x,y)
+'''    `;
       const twoanova = `import pandas as pd
 import scipy.stats as se
 
@@ -803,7 +962,75 @@ if F < Ftab:
     print("Since Fcal.<Ftable value, We accept H₀.")
 else:
     print("Since Fcal.>Ftable value, We reject H₀.")
-`;
+
+'''import numpy as np
+
+def mat_multiply(mat1, mat2):
+    if mat1.shape[1] != mat2.shape[0]:
+        print("Cannot multiply the matrices!!")
+        return
+
+    mat3 = np.zeros([mat1.shape[0],mat2.shape[1]], dtype=float)
+
+    for i in range(len(mat1)):
+        for j in range(len(mat2[0])):
+            for k in range(len(mat2)):
+                mat3[i][j] += mat1[i][k] * mat2[k][j]
+
+    return mat3
+
+def mat_transpose(mat):
+    result = np.zeros((mat.shape[1], mat.shape[0]), dtype=float)
+
+    for i in range(mat.shape[0]):
+       for j in range(mat.shape[1]):
+           result[j][i] = mat[i][j]
+
+    return result
+
+Y_dim = int(input("Enter number of Y variables: "))
+X_dim = int(input("Enter number of X variables: "))
+
+Y = []
+X = []
+
+for i in range(Y_dim):
+    Y_row = np.array([float(j) for j in input(f"Enter Y{i} values: ").strip().split()])
+    Y.append(Y_row)
+
+X.append(np.array([1 for i in range(len(Y[0]))]))
+for i in range(1, X_dim):
+    X_row =  np.array([float(j) for j in input(f"Enter X{i} values: ").strip().split()])
+    X.append(X_row)
+
+Y = np.array(Y)
+X = np.array(X)
+
+XTX = mat_multiply(X, mat_transpose(X))
+
+XTX_inv = np.linalg.inv(XTX)
+
+XTY = mat_multiply(X,mat_transpose(Y))
+
+Beta = mat_transpose(mat_multiply(XTX_inv,XTY))
+eta = mat_transpose(mat_multiply(XTX_inv,XTY))
+
+Yfitted = []
+for i in range(len(Y)):
+    row = 0
+    for j in range(len(X)):
+        row += Beta[i][j]*X[j]
+    Yfitted.append(row)
+
+Yfitted = np.array(Yfitted)
+
+print("\nThe Multi Variate Linear Regression Models for the given data:")
+for i in range(len(Y)):
+    output = f"Y{i} = ({round(Beta[i][0],4)})"
+    for j in range(1, len(X)):
+        output += f" + ({round(Beta[i][j],4)})X{j}"
+    print(output)
+'''    `;
       const multiv = `import numpy as np
 
 def get_user_input(prompt):
