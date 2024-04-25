@@ -36,56 +36,12 @@
   <body>
     <div class="program-list">
       <div class="program">
-        <h4>1. Best Fit straight line</h4>
-        <button class="copy-btn" onclick="copyToClipboard(bestfit)">cop</button>
-      </div>
-      <div class="program">
-        <h4>2. Second degree Parabola</h4>
-        <button class="copy-btn" onclick="copyToClipboard(bestfit)">cop</button>
-      </div>
-      <div class="program">
-        <h4>3. Karl Pearson's</h4>
-        <button class="copy-btn" onclick="copyToClipboard(karlpearson)">
-          cop
-        </button>
-      </div>
-      <div class="program">
-        <h4>4. One way Anova</h4>
-        <button class="copy-btn" onclick="copyToClipboard(oneanova)">
-          cop
-        </button>
-      </div>
-      <div class="program">
-        <h4>5. Spearman's</h4>
-        <button class="copy-btn" onclick="copyToClipboard(spearman)">
-          cop
-        </button>
-      </div>
-      <div class="program">
-        <h4>6. Two Way Anova</h4>
-        <button class="copy-btn" onclick="copyToClipboard(twoanova)">
-          cop
-        </button>
-      </div>
-      <div class="program">
-        <h4>7. Multi linear Regression</h4>
-        <button class="copy-btn" onclick="copyToClipboard(mutli)">cop</button>
-      </div>
-      <div class="program">
-        <h4>8. Multi Variate Regression</h4>
-        <button class="copy-btn" onclick="copyToClipboard(multiv)">cop</button>
-      </div>
-      <div class="program">
-        <h4>9. Multi Variate analysis</h4>
-        <button class="copy-btn" onclick="copyToClipboard(multiv)">cop</button>
-      </div>
-      <div class="program">
-        <h4>10. discriminent analysis</h4>
+        <h4>1.prog1</h4>
         <button class="copy-btn" onclick="copyToClipboard(discrim)">cop</button>
       </div>
       <div class="program">
-        <h4>11. component analysis</h4>
-        <button class="copy-btn" onclick="copyToClipboard(companal)">
+        <h4>2.lab 2</h4>
+        <button class="copy-btn" onclick="copyToClipboard(prog2)">
           cop
         </button>
       </div>
@@ -103,6 +59,37 @@
             cop
           </button>
         </div>
+        <div class="program">
+          <h4>del_history</h4>
+          <button class="copy-btn" onclick="copyToClipboard(prog3_del_his)">
+            cop
+          </button>
+        </div>
+        <div class="program">
+            <h4>low&h paid</h4>
+            <button class="copy-btn" onclick="copyToClipboard(prog3_9)">
+              cop
+            </button>
+          </div>
+          <div class="program">
+            <h4>bank</h4>
+            <button class="copy-btn" onclick="copyToClipboard(prog3_10)">
+              cop
+            </button>
+          </div>
+          <div class="program">
+          <h4>built in exce</h4>
+          <button class="copy-btn" onclick="copyToClipboard(prog3_11)">
+            cop
+          </button>
+          </div>
+          <div class="program">
+            <h4>-ve quantity</h4>
+            <button class="copy-btn" onclick="copyToClipboard(prog3_12)">
+              cop
+            </button>
+            </div>
+        </div>
       </div>
     </div>
     <script>
@@ -115,110 +102,407 @@
       const twoanova = `e`;
       const mutli = ` e`;
       const multiv = `e`;
-      const oneanova = `e`;
 
-      const prog3_grosspay = `CREATE TABLE employee (
-eno NUMBER,
-ename VARCHAR2(50),
-basic_pay NUMBER
+      const prog1 = ``;
+      const prog2 = `SQL> SELECT INITCAP (DNAME) "DNAME" FROM  DEPT;
+SQL> SELECT ENAME || ' [  ' || JOB || 'RS.' || SAL || '] '  AS JOB_SAL FROM EMPLOYEE;
+SQL> SELECT DNAME, LENGTH (DNAME)-LENGTH (REPLACE (DNAME,'S'))
+           FROM DEPT  GROUP BY DNAME;
+SQL>(SELECT DNAME FROM DEPT) MINUS
+( SELECT   DNAME
+           FROM EMPLOYEE E, DEPT D
+          WHERE E.DEPTNO = D.DEPTNO )
+SQL>SELECT * FROM EMPLOYEE 
+         WHERE (TO_CHAR (HIREDATE,'YYYY') BETWEEN 1980 AND 1990) AND
+         (TO_CHAR (HIREDATE,'w') = 2);
+SQL> SELECT TO_CHAR(SYSDATE,'DAY  DDth YYYY HH:MI:SS pm') "DATE"
+           FROM DUAL;
+SQL>  SELECT * FROM EMP WHERE 
+TRIM(TO_CHAR(HIREDATE,'DAY')) = 'WEDNESDAY'  AND 
+HIREDATE BETWEEN LAST_DAY(HIREDATE)-6 AND LAST_DAY(HIREDATE)  AND
+MONTHS_BETWEEN(SYSDATE, HIREDATE) > 20;
+SQL> SELECT ENAME, HIREDATE, ROUND ((SYSDATE-HIREDATE)/365) "SERVICE IN YEARS"    FROM EMPLOYEE;
+SQL> SELECT ENAME, DECODE (SIGN (1500-SAL), 1 ,'BELOW THE TARGET', 
+            0, 'ON THE TARGET', ' ABOVE THE TARGET ' )  "TARGET"
+             FROM EMPLOYEE; 
+SQL> SELECT ENAME, EMPNO, DNAME, GRADE
+          FROM DEPT, EMPLOYEE E, SALGRADE
+          WHERE E.DEPTNO=DEPT.DEPTNO AND E.DEPTNO=30 AND 
+          SAL BETWEEN LOSAL AND HISAL;
+SQL>SELECT TO_CHAR(SYSDATE,’HH:MI:SS’) FROM DUAL;
+SQL> SELECT ENAME, SAL  FROM EMPLOYEE E 
+          		WHERE SAL  >
+ (SELECT AVG (SAL) FROM EMPLOYEE WHERE DEPTNO = E.DEPTNO );
+SQL> SELECT S.ENAME, COUNT (*) "NOOFSUBORDINATES"
+           FROM EMPLOYEE S, EMPLOYEE E
+          WHERE E.MGR=S.EMPNO 
+          GROUP BY S.ENAME;
+SQL> SELECT S.ENAME, COUNT (*) "NOOFSUBORDINATES"
+           FROM EMPLOYEE S, EMPLOYEE E
+          WHERE E.MGR=S.EMPNO
+          GROUP BY S.ENAME
+          HAVING COUNT (*)  =  (SELECT MAX (COUNT (*))
+                                FROM EMPLOYEE E, EMPLOYEE S
+                                WHERE E.MGR=S.EMPNO
+                                GROUP BY S.ENAME);
+SQL> SELECT ENAME, SAL
+           FROM EMPLOYEE    E
+           WHERE 3> (SELECT COUNT (*) FROM EMPLOYEE   F   WHERE E.SAL<F.SAL);
+SQL> SELECT E.ENAME, E.HIREDATE, M.ENAME "MGRNAME", M.HIREDATE   
+            "MGRHIREDATE"   FROM EMPLOYEE E, EMPLOYEE M
+          WHERE E.MGR=M.EMPNO AND E.HIREDATE<M.HIREDATE;
+SQL> SELECT TO_CHAR (HIREDATE,'YYYY') "YEAR", COUNT (*)"NOOFEMPL"
+           FROM EMPLOYEE
+          GROUP BY TO_CHAR (HIREDATE,'YYYY')
+          HAVING COUNT (*) =(SELECT MAX(COUNT(*))
+           FROM EMPLOYEE
+           GROUP BY TO_CHAR (HIREDATE,'YYYY'));
+SQL>SELECT TO_CHAR (TO_DATE (‘&DATE’, ’DD: MM: YY’), ’DAY’) FROM DUAL;
+`;
+      const prog3_12 = `CREATE TABLE Inventory (
+Product_ID NUMBER,
+Product_name VARCHAR2(100),
+    Quantity NUMBER
 );
 
-INSERT INTO employee (eno, ename, basic_pay) VALUES (1, 'John', 10000);
-INSERT INTO employee (eno, ename, basic_pay) VALUES (2, 'Jane', 8000);
-INSERT INTO employee (eno, ename, basic_pay) VALUES (3, 'Alice', 12000);
-INSERT INTO employee (eno, ename, basic_pay) VALUES (4, 'Bob', 6000);
+INSERT INTO Inventory (Product_ID, Product_name, Quantity) VALUES (1, 'Product A', 10);
+INSERT INTO Inventory (Product_ID, Product_name, Quantity) VALUES (2, 'Product B', -5);
+INSERT INTO Inventory (Product_ID, Product_name, Quantity) VALUES (3, 'Product C', 20);
 
 DECLARE
-v_enoemployee.eno%TYPE;
-v_enameemployee.ename%TYPE;
-v_basic_payemployee.basic_pay%TYPE;
-v_hra NUMBER;
-v_da NUMBER;
-v_pf NUMBER;
-v_ptax NUMBER;
-v_gross_salary NUMBER;
-v_net_salary NUMBER;
+v_quantity NUMBER;
 BEGIN
-    FOR emp IN (SELECT * FROM employee) LOOP
-v_eno := emp.eno;
-v_ename := emp.ename;
-v_basic_pay := emp.basic_pay;
+    FOR rec IN (SELECT * FROM Inventory WHERE Quantity < 0) LOOP
+        DBMS_OUTPUT.PUT_LINE('Quantity for product ' || rec.Product_name || ' is negative. Updating to 0.');
 
-v_hra := 0.15 * v_basic_pay;
-v_da := 0.62 * v_basic_pay;
-        IF v_basic_pay> 8000 THEN
-v_pf := 780;
-        ELSE
-v_pf := 600;
-        END IF;
-v_ptax := 0.02 * v_basic_pay;
-
-v_gross_salary := v_basic_pay + v_hra + v_da;
-
-v_net_salary := v_gross_salary - v_pf - v_ptax;
-
-        DBMS_OUTPUT.PUT_LINE('Employee No: ' || v_eno);
-        DBMS_OUTPUT.PUT_LINE('Employee Name: ' || v_ename);
-        DBMS_OUTPUT.PUT_LINE('HRA: ' || v_hra);
-        DBMS_OUTPUT.PUT_LINE('DA: ' || v_da);
-        DBMS_OUTPUT.PUT_LINE('PF: ' || v_pf);
-        DBMS_OUTPUT.PUT_LINE('Professional Tax: ' || v_ptax);
-        DBMS_OUTPUT.PUT_LINE('Gross Salary: ' || v_gross_salary);
-        DBMS_OUTPUT.PUT_LINE('Net Salary: ' || v_net_salary);
-        DBMS_OUTPUT.PUT_LINE('-----------------------');
+        UPDATE Inventory
+        SET Quantity = 0
+        WHERE Product_ID = rec.Product_ID;
     END LOOP;
+
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('An error occurred: ' || SQLERRM);
+        -- Rollback the transaction
+        ROLLBACK;
 END;
 `;
-      const prog3_product = `CREATE TABLE Inventory (
-      Product_ID NUMBER,
-      Product_name VARCHAR2(20),
-          Quantity NUMBER
+      const prog3_11 = `CREATE TABLE nonexistent_table (
+    id NUMBER
+);
+
+CREATE TABLE employees (
+emp_id NUMBER,
+emp_name VARCHAR2(100)
+);
+
+INSERT INTO employees (emp_id, emp_name) VALUES (1, 'John Doe');
+INSERT INTO employees (emp_id, emp_name) VALUES (2, 'John Doe'); 
+DECLARE
+v_result NUMBER;
+BEGIN
+    BEGIN
+        SELECT COUNT(*) INTO v_result FROM nonexistent_table;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            DBMS_OUTPUT.PUT_LINE('NO_DATA_FOUND: No data found for the query.');
+    END;
+
+
+    BEGIN
+        SELECT emp_id INTO v_result FROM employees WHERE emp_name = 'John Doe';
+    EXCEPTION
+        WHEN TOO_MANY_ROWS THEN
+            DBMS_OUTPUT.PUT_LINE('TOO_MANY_ROWS: More than one row returned for the query.');
+    END;
+
+
+    BEGIN
+v_result := 10 / 0;
+    EXCEPTION
+        WHEN ZERO_DIVIDE THEN
+            DBMS_OUTPUT.PUT_LINE('ZERO_DIVIDE: Division by zero occurred.');
+    END;
+END;
+`;
+      const prog3_10 = `CREATE TABLE Bank_Main (
+Acc_no NUMBER,
+    Name VARCHAR2(50),
+    Address VARCHAR2(100),
+Acc_type VARCHAR2(1),
+Curr_balance NUMBER
+);
+
+CREATE TABLE Bank_Trans (
+Acc_no NUMBER,
+Tr_type VARCHAR2(1),
+Tr_date DATE,
+Tr_amt NUMBER,
+Upd_flag VARCHAR2(1)
+);
+
+INSERT INTO Bank_Main (Acc_no, Name, Address, Acc_type, Curr_balance)
+VALUES (1, 'John Doe', '123 Main St', 'S', 1000);
+
+INSERT INTO Bank_Main (Acc_no, Name, Address, Acc_type, Curr_balance)
+VALUES (2, 'Jane Smith', '456 Elm St', 'C', 500);
+
+INSERT INTO Bank_Trans (Acc_no, Tr_type, Tr_date, Tr_amt, Upd_flag)
+VALUES (1, 'D', TO_DATE('2024-04-13', 'YYYY-MM-DD'), 200, 'N');
+
+INSERT INTO Bank_Trans (Acc_no, Tr_type, Tr_date, Tr_amt, Upd_flag)
+VALUES (2, 'W', TO_DATE('2024-04-14', 'YYYY-MM-DD'), 100, 'N');
+
+-- Enable output display
+SET SERVEROUTPUT ON;
+
+DECLARE
+v_acc_noBank_Trans.Acc_no%TYPE;
+v_tr_typeBank_Trans.Tr_type%TYPE;
+v_tr_amtBank_Trans.Tr_amt%TYPE;
+BEGIN
+    FOR trans_rec IN (SELECT * FROM Bank_Trans WHERE Upd_flag = 'N') LOOP
+v_acc_no := trans_rec.Acc_no;
+v_tr_type := trans_rec.Tr_type;
+v_tr_amt := trans_rec.Tr_amt;
+
+        IF v_tr_type = 'D' THEN
+            UPDATE Bank_Main
+            SET Curr_balance = Curr_balance + v_tr_amt
+            WHERE Acc_no = v_acc_no;
+        ELSIF v_tr_type = 'W' THEN
+            UPDATE Bank_Main
+            SET Curr_balance = Curr_balance - v_tr_amt
+            WHERE Acc_no = v_acc_no;
+        END IF;
+
+        UPDATE Bank_Trans
+        SET Upd_flag = 'Y'
+        WHERE Acc_no = v_acc_no
+        AND Tr_type = v_tr_type
+        AND Tr_amt = v_tr_amt;
+
+        DBMS_OUTPUT.PUT_LINE('Transaction updated for Acc_no: ' || v_acc_no);
+    END LOOP;
+
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('An error occurred: ' || SQLERRM);
+        ROLLBACK; -- Rollback in case of error
+END;
+`;
+      const prog3_9 = `CREATE TABLE EMPLOYEE (
+      EmpNo NUMBER,
+          Name VARCHAR2(50),
+          Salary NUMBER,
+          Designation VARCHAR2(50),
+      DeptID NUMBER
       );
 
-      CREATE TABLE Purchase_Record (
-      Product_ID NUMBER,
-      Purchase_Status VARCHAR2(20),
-      Purchase_Date DATE
-      );
-      insert into Inventory values(123,'dairy milk',120);
-      insert into Purchase_Record
-      select 123, 'Purchased', TO_DATE('2024-01-01', 'YYYY-MM-DD')
-      from dual;
+      INSERT INTO EMPLOYEE (EmpNo, Name, Salary, Designation, DeptID)
+      VALUES (1, 'John Doe', 60000, 'Manager', 101);
 
+      INSERT INTO EMPLOYEE (EmpNo, Name, Salary, Designation, DeptID)
+      VALUES (2, 'Jane Smith', 55000, 'Assistant Manager', 101);
+
+
+      -- Enable output display
       SET SERVEROUTPUT ON;
 
       DECLARE
-      v_product_idNUMBER := 123; -- Assign a value to the product ID
-      v_quantity NUMBER;
-      v_status VARCHAR2(20);
+          CURSOR c_highest_paid IS
+              SELECT EmpNo, Name, Salary, Designation, DeptID
+              FROM (
+                  SELECT EmpNo, Name, Salary, Designation, DeptID
+                  FROM EMPLOYEE
+                  ORDER BY Salary DESC
+              )
+              WHERE ROWNUM <= 5;
+
+          CURSOR c_lowest_paid IS
+              SELECT EmpNo, Name, Salary, Designation, DeptID
+              FROM (
+                  SELECT EmpNo, Name, Salary, Designation, DeptID
+                  FROM EMPLOYEE
+                  ORDER BY Salary ASC
+              )
+              WHERE ROWNUM <= 5;
       BEGIN
-          SELECT Quantity INTO v_quantity
-          FROM Inventory
-          WHERE Product_ID = v_product_id;
+          DBMS_OUTPUT.PUT_LINE('--- Five Highest Paid Employees ---');
+          FOR emp_rec IN c_highest_paid LOOP
+              DBMS_OUTPUT.PUT_LINE('EmpNo: ' || emp_rec.EmpNo || ', Name: ' || emp_rec.Name || ', Salary: ' || emp_rec.Salary || ', Designation: ' || emp_rec.Designation || ', DeptID: ' || emp_rec.DeptID);
+          END LOOP;
 
-          IF v_quantity> 0 THEN
-              UPDATE Inventory
-              SET Quantity = Quantity - 1
-              WHERE Product_ID = v_product_id;
-      v_status := 'PURCHASED';
-          ELSE
-      v_status := 'OUT OF STOCK';
-          END IF;
+          DBMS_OUTPUT.PUT_LINE('--- Five Lowest Paid Employees ---');
+          FOR emp_rec IN c_lowest_paid LOOP
+              DBMS_OUTPUT.PUT_LINE('EmpNo: ' || emp_rec.EmpNo || ', Name: ' || emp_rec.Name || ', Salary: ' || emp_rec.Salary || ', Designation: ' || emp_rec.Designation || ', DeptID: ' || emp_rec.DeptID);
+          END LOOP;
+      END;
+      `;
+      const prog3_del_his = `CREATE TABLE Emp (
+          empid NUMBER,
+          name VARCHAR2(50),
+          salary NUMBER,
+      dno NUMBER
+      );
+
+      CREATE TABLE Del_History (
+      dno NUMBER,
+      Rows_deleted NUMBER,
+      Date_deleted DATE
+      );
+
+      INSERT INTO Emp (empid, name, salary, dno)
+      VALUES (1, 'John Doe', 50000, 123);
+
+      INSERT INTO Emp (empid, name, salary, dno)
+      VALUES (2, 'Jane Smith', 60000, 123);
+
+      INSERT INTO Emp (empid, name, salary, dno)
+      VALUES (3, 'Michael Johnson', 55000, 456);
+
+      INSERT INTO Emp (empid, name, salary, dno)
+      VALUES (4, 'Emily Brown', 52000, 789);
 
 
-          INSERT INTO Purchase_Record (Product_ID, Purchase_Status, Purchase_Date)
-          VALUES (v_product_id, v_status, SYSDATE);
+      -- Enable output display
+      SET SERVEROUTPUT ON;
+
+      DECLARE
+      v_department_numberNUMBER := 123; -- Specify the department number
+      v_rows_deletedNUMBER := 0; -- Initialize the counter for rows deleted
+
+          CURSOR c_emp IS
+              SELECT empid
+              FROM Emp
+              WHERE dno = v_department_number;
+      BEGIN
+          FOR emp_rec IN c_emp LOOP
+              DELETE FROM Emp
+              WHERE empid = emp_rec.empid;
+
+
+      v_rows_deleted := v_rows_deleted + SQL%ROWCOUNT;
+          END LOOP;
+
+          INSERT INTO Del_History (dno, Rows_deleted, Date_deleted)
+          VALUES (v_department_number, v_rows_deleted, SYSDATE);
 
           COMMIT;
 
-          DBMS_OUTPUT.PUT_LINE('Transaction recorded successfully.');
+          DBMS_OUTPUT.PUT_LINE('Deletion completed successfully.');
       EXCEPTION
           WHEN NO_DATA_FOUND THEN
-              DBMS_OUTPUT.PUT_LINE('Product not found in inventory.');
+              DBMS_OUTPUT.PUT_LINE('No employees found in the specified department.');
           WHEN OTHERS THEN
               DBMS_OUTPUT.PUT_LINE('An error occurred: ' || SQLERRM);
       END;
       `;
+
+      const prog3_grosspay = `CREATE TABLE employee (
+      eno NUMBER,
+      ename VARCHAR2(50),
+      basic_pay NUMBER
+      );
+
+      INSERT INTO employee (eno, ename, basic_pay) VALUES (1, 'John', 10000);
+      INSERT INTO employee (eno, ename, basic_pay) VALUES (2, 'Jane', 8000);
+      INSERT INTO employee (eno, ename, basic_pay) VALUES (3, 'Alice', 12000);
+      INSERT INTO employee (eno, ename, basic_pay) VALUES (4, 'Bob', 6000);
+
+      DECLARE
+      v_enoemployee.eno%TYPE;
+      v_enameemployee.ename%TYPE;
+      v_basic_payemployee.basic_pay%TYPE;
+      v_hra NUMBER;
+      v_da NUMBER;
+      v_pf NUMBER;
+      v_ptax NUMBER;
+      v_gross_salary NUMBER;
+      v_net_salary NUMBER;
+      BEGIN
+          FOR emp IN (SELECT * FROM employee) LOOP
+      v_eno := emp.eno;
+      v_ename := emp.ename;
+      v_basic_pay := emp.basic_pay;
+
+      v_hra := 0.15 * v_basic_pay;
+      v_da := 0.62 * v_basic_pay;
+              IF v_basic_pay> 8000 THEN
+      v_pf := 780;
+              ELSE
+      v_pf := 600;
+              END IF;
+      v_ptax := 0.02 * v_basic_pay;
+
+      v_gross_salary := v_basic_pay + v_hra + v_da;
+
+      v_net_salary := v_gross_salary - v_pf - v_ptax;
+
+              DBMS_OUTPUT.PUT_LINE('Employee No: ' || v_eno);
+              DBMS_OUTPUT.PUT_LINE('Employee Name: ' || v_ename);
+              DBMS_OUTPUT.PUT_LINE('HRA: ' || v_hra);
+              DBMS_OUTPUT.PUT_LINE('DA: ' || v_da);
+              DBMS_OUTPUT.PUT_LINE('PF: ' || v_pf);
+              DBMS_OUTPUT.PUT_LINE('Professional Tax: ' || v_ptax);
+              DBMS_OUTPUT.PUT_LINE('Gross Salary: ' || v_gross_salary);
+              DBMS_OUTPUT.PUT_LINE('Net Salary: ' || v_net_salary);
+              DBMS_OUTPUT.PUT_LINE('-----------------------');
+          END LOOP;
+      END;
+      `;
+      const prog3_product = `CREATE TABLE Inventory (
+            Product_ID NUMBER,
+            Product_name VARCHAR2(20),
+                Quantity NUMBER
+            );
+
+            CREATE TABLE Purchase_Record (
+            Product_ID NUMBER,
+            Purchase_Status VARCHAR2(20),
+            Purchase_Date DATE
+            );
+            insert into Inventory values(123,'dairy milk',120);
+            insert into Purchase_Record
+            select 123, 'Purchased', TO_DATE('2024-01-01', 'YYYY-MM-DD')
+            from dual;
+
+            SET SERVEROUTPUT ON;
+
+            DECLARE
+            v_product_idNUMBER := 123; -- Assign a value to the product ID
+            v_quantity NUMBER;
+            v_status VARCHAR2(20);
+            BEGIN
+                SELECT Quantity INTO v_quantity
+                FROM Inventory
+                WHERE Product_ID = v_product_id;
+
+                IF v_quantity> 0 THEN
+                    UPDATE Inventory
+                    SET Quantity = Quantity - 1
+                    WHERE Product_ID = v_product_id;
+            v_status := 'PURCHASED';
+                ELSE
+            v_status := 'OUT OF STOCK';
+                END IF;
+
+
+                INSERT INTO Purchase_Record (Product_ID, Purchase_Status, Purchase_Date)
+                VALUES (v_product_id, v_status, SYSDATE);
+
+                COMMIT;
+
+                DBMS_OUTPUT.PUT_LINE('Transaction recorded successfully.');
+            EXCEPTION
+                WHEN NO_DATA_FOUND THEN
+                    DBMS_OUTPUT.PUT_LINE('Product not found in inventory.');
+                WHEN OTHERS THEN
+                    DBMS_OUTPUT.PUT_LINE('An error occurred: ' || SQLERRM);
+            END;
+            `;
       function copyToClipboard(code) {
         navigator.clipboard.writeText(code).then(
           function () {
