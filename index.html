@@ -36,8 +36,8 @@
   <body>
     <div class="program-list">
       <div class="program">
-        <h4>1.prog1</h4>
-        <button class="copy-btn" onclick="copyToClipboard(discrim)">cop</button>
+        <h4>1.nestle</h4>
+        <button class="copy-btn" onclick="copyToClipboard(prog1)">cop</button>
       </div>
       <div class="program">
         <h4>2.lab 2</h4>
@@ -101,7 +101,34 @@
     </div>
     <script>
 
-      const prog1 = ``;
+      const prog1 = `> select count(distinct id) from takes where course_id in
+ (select course_id from teaches where id=45565);
+> select i1.name from instructor i1 where salary>any(select salary from instructor where dept_name='Biology')
+>select dept_name from instructor group by dept_name having avg(salary)=
+ (select max(avg(salary)) from instructor group by dept_name);
+>select t1.course_id from teaches t1 where exists
+(select * from teaches t2 where t1.course_id=t2.course_id
+and t1.semester='Fall' and t1.year=2009 and t2.semester='Spring' and t2.year=2010);
+>select t1.course_id from teaches t1 where t1.semester='Fall' and t1.year=2009 and 
+not exists (select distinct course_id from teaches where t1.course_id=course_id and semester='Spring' and year=2010)
+>select course_id from teaches where semester='Fall' and year=2009
+and course_id in (select course_id from teaches where semester='Spring' and year=2010)
+>select id from takes t1 where not exists((select course_id from course where dept_name='Biology
+ MINUS
+ (select course_id from takes t2 where t1.id=t2.id))
+>select course_id from teaches t1 where year=2009 group by course_id
+having count(*)>1;
+>select course_id from teaches t1 where year=2009 group by course_id
+having count(*)>2
+>select avg(salary) ,dept_name from instructor group by dept_name having avg(salary)>=42000;
+>select dept_name from department group by dept_name having max(budget) =
+ (select max(budget) from department)
+>select name from instructor where id not in (select id from teaches);
+> select id,name from student s1 where id not in (select id from takes t1 where t1.semester='Spring' and t1.year<=2009)
+>select min(salary) from instructor where salary in
+(select max(salary) from instructor group by dept_name)
+>select id,name from instructor where dept_name='Comp. Sci.';
+>`;
       const prog4=`create or replace procedure raisesal(n number) as
 	s number;
 	a number;
