@@ -14,8 +14,7 @@
         margin-left: 20px;
       }
 
-      .program,
-      .lab {
+      .program {
         margin-bottom: 20px;
       }
 
@@ -36,351 +35,1098 @@
   <body>
     <div class="program-list">
       <div class="program">
-        <h4>implic</h4>
-        <button class="copy-btn" onclick="copyToClipboard(implicit)">cop</button>
+        <h4>1. Best Fit straight line</h4>
+        <button class="copy-btn" onclick="copyToClipboard(bestfit)">cop</button>
       </div>
       <div class="program">
-        <h4>act</h4>
-        <button class="copy-btn" onclick="copyToClipboard(jsp_act)">
+        <h4>2. Second degree Parabola</h4>
+        <button class="copy-btn" onclick="copyToClipboard(seconddeg)">
           cop
         </button>
       </div>
       <div class="program">
-          <h4>ser</h4>
-          <button class="copy-btn" onclick="copyToClipboard(sevlet)">
-            cop
-          </button>
-        </div>
-        <div class="program">
-          <h4>xm</h4>
-          <button class="copy-btn" onclick="copyToClipboard(xml)">
-            cop
-          </button>
-        </div>
-        <div class="program">
-          <h4>mous</h4>
-          <button class="copy-btn" onclick="copyToClipboard(mouse)">
-            cop
-          </button>
-        </div>
-        <div class="program">
-            <h4>form</h4>
-            <button class="copy-btn" onclick="copyToClipboard(form_eve)">
-              cop
-            </button>
-          </div>
-          <div class="program">
-            <h4>matr</h4>
-            <button class="copy-btn" onclick="copyToClipboard(matric)">
-              cop
-            </button>
-          </div>
-          <div class="program">
-          <h4>fram</h4>
-          <button class="copy-btn" onclick="copyToClipboard(frame)">
-            cop
-          </button>
-          </div>
-          <div class="program">
-            <h4>grad</h4>
-            <button class="copy-btn" onclick="copyToClipboard(lin_grad)">
-              cop
-            </button>
-            </div>
-        
+        <h4>3. Karl Pearson's</h4>
+        <button class="copy-btn" onclick="copyToClipboard(karlpearson)">
+          cop
+        </button>
       </div>
-      
+      <div class="program">
+        <h4>4. One way Anova</h4>
+        <button class="copy-btn" onclick="copyToClipboard(oneanova)">
+          cop
+        </button>
+      </div>
+      <div class="program">
+        <h4>5. Spearman's</h4>
+        <button class="copy-btn" onclick="copyToClipboard(spearman)">
+          cop
+        </button>
+      </div>
+      <div class="program">
+        <h4>6. Two Way Anova</h4>
+        <button class="copy-btn" onclick="copyToClipboard(twoanova)">
+          cop
+        </button>
+      </div>
+      <div class="program">
+        <h4>7. Multi linear Regression</h4>
+        <button class="copy-btn" onclick="copyToClipboard(mutli)">cop</button>
+      </div>
+      <div class="program">
+        <h4>8. Multi Variate Regression</h4>
+        <button class="copy-btn" onclick="copyToClipboard(multiv)">cop</button>
+      </div>
+      <div class="program">
+        <h4>9. Multi Variate analysis</h4>
+        <button class="copy-btn" onclick="copyToClipboard(multivanal)">
+          cop
+        </button>
+      </div>
+      <div class="program">
+        <h4>10. discriminent analysis</h4>
+        <button class="copy-btn" onclick="copyToClipboard(discrim)">cop</button>
+      </div>
+      <div class="program">
+        <h4>11. component analysis</h4>
+        <button class="copy-btn" onclick="copyToClipboard(companal)">
+          cop
+        </button>
+      </div>
+      <div class="program">
+        <h4>12. factor analysis</h4>
+        <button class="copy-btn" onclick="copyToClipboard(factanal)">
+          cop
+        </button>
+      </div>
+    </div>
     <script>
+      const multivanal = `import numpy as np
+n1=int(input("enter no of treatements"))
+p=[]
+for i in range(n1):
+  p.append(int(input("enter no of subgroups in treatements")))
+a=[]
+for i in range(len(p)):
+ b=[]
+ for j in range(p[i]):
+  q=[int(x) for x in input().split(" ")]
+ b.append(q)
+ a.append(b)
+print(a)
+yii=[]
+ybar=[]
+sum2=0
+sum3=0
+k=0
+for i in range(n1):
+ sum=0
+ sum1=0
+ yi=[]
+ for j in range(p[i]):
+  sum=sum+a[i][j][0]
+  sum1=sum1+a[i][j][1]
+  sum2=sum2+a[i][j][0]
+  sum3=sum3+a[i][j][1]
+ k=k+p[i]
+ sum=sum/p[i]
+ sum1=sum1/p[i]
+ yi.append(sum)
+ yi.append(sum1)
+ yii.append(yi)
+sum2=sum2/k
+sum3=sum3/k
+ybar.append(sum2)
+ybar.append(sum3)
+print(yii)
+print(ybar)
+#y1 and y2 and cross product of y1,y2
+sse1=sst1=sse2=sst2=sse12=sst12=0
+for i in range(n1):
+ for j in range(p[i]):
+  sse1=sse1+((a[i][j][0]-yii[i][0])**2)
+  sst1=sst1+((a[i][j][0]-ybar[0])**2)
+  sse2=sse2+((a[i][j][1]-yii[i][1])**2)
+  sst2=sst2+((a[i][j][1]-ybar[1])**2)
+  sse12=sse12+((a[i][j][0]*a[i][j][1])-(yii[i][0]*yii[i][1]))
+  sst12=sst12+((a[i][j][0]*a[i][j][1])-(ybar[0]*ybar[1]))
+print('for y1 ')
+print('sse : ',sse1)
+print('sst : ',sst1)
+ssr1=sst1-sse1
+print('ssr : ',ssr1)
+print('for y2 ')
+print('sse : ',sse2)
+print('sst : ',sst2)
+ssr2=sst2-sse2
+print('ssr : ',ssr2)
+print('cross product values of y1 and y2 ')
+print('sse : ',sse12)
+print('sst : ',sst12)
+ssr12=sst12-sse12
+print('ssr : ',ssr12)
+w1=[sse1,sse12,sse12,sse2]
+t1=[sst1,sst12,sst12,sst2]
+w=(w1[0]*w1[3])-(w1[1]*w1[2])
+t=(t1[0]*t1[3])-(t1[1]*t1[2])
+delta=w/t
+#f-test
+from math import sqrt
+f=((k-n1-1)/(n1-1))*((1-sqrt(delta))/sqrt(delta))
+print('f calculated value is :',f)
+import scipy.stats as stats
+p=len(a[0][0])
+ftab=stats.f.ppf(1-0.05,p*(n1-1),p*(k-n1-1))
+print('f table value is :',ftab)
+if(f>ftab):
+ print("Reject Null Hypothesis")
+else:
+ print("Accept Null Hypothesis")
+ '''import numpy as np
+import scipy.stats as ss
 
-      const matric = `<html>
-<head>
-<title>Matrices</title>
-</head>
-<body>
-<h3>Matrix 1:</h3>
-<table id="mat1"></table>
-<h3>Matrix 2:</h3>
-<table id="mat2"></table><br>
-<button id="add">Addition</button>
-<button id="multiply">Multiplication</button>
-<table id="output"></table>
-<script>
-functionprintMatrix(matObj, mat){
-var content = ""
-for (let i = 0; i <mat.length; ++i)
-                {
-content += "<tr>"
-for (let j = 0; j < mat[1].length; ++j)
-content += "<td>"+mat[i][j]+"</td>"
-content += "</tr>"}
-matObj.innerHTML = content}
-function addition(){
-const out = document.querySelector("#output");
-var mat3 = []
-for(let i=0; i<mat1.length; ++i)
-                {
-let temp = []
-for(let  j =0; j < mat1[i].length; ++j)
-temp.push(mat1[i][j]+mat2[i][j])
-mat3.push(temp) }
-printMatrix(out, mat3) }
-function multiplication(){
-const out = document.getElementById("output");
-var mat3 = []
-for (let i = 0; i < mat1.length; ++i){
-var temp = []
-for (let j = 0; j < mat1[i].length; ++j){
-var res = 0
-for (let k = 0; k < mat2.length; ++k){
-res += mat1[i][k] * mat2[k][j]
-                        }
-temp.push(res)
-                    }
-mat3.push(temp)
-                }
-printMatrix(out, mat3)
-            }
-const mat1 = [[1,2,3],
-                          [4,5,6],
-                          [7,8,9]]
-const mat2 = [[11,12,13],
-                          [14,15,16],
-                          [17,18,19]]
-printMatrix(document.getElementById("mat1"), mat1)
-printMatrix(document.getElementById("mat2"), mat2)
-document.getElementById("add").addEventListener("click", addition)
-document.getElementById("multiply").addEventListener("click", multiplication)
-</script>
-</body>
-</html>
+def det(mat):
+    return mat[0,0]*mat[1,1]-mat[0,1]*mat[1,0]
+
+n = int(input("Enter total number of groups: "))
+k = int(input("Enter number of treatments: "))
+p = int(input("Enter the number of observations in each group: "))
+alpha = float(input("Enter Level of Significance: "))
+
+treatments = []
+ybar = np.array([[0,0] for i in range(k)])
+ydbar = np.array([0, 0])
+
+for i in range(k):
+    ni = int(input(f"Enter number of groups in treatment{i+1}: "))
+    treatmentValues = np.empty((0, p))
+
+    for j in range(ni):
+        groups = np.array([float(k) for k in input(f"\tEnter the values of group{j+1}: ").split()])
+        treatmentValues = np.append(treatmentValues, np.array([groups]), axis=0)
+        ybar[i] = ybar[i]+groups
+        ydbar = ydbar + groups
+
+    ybar[i] = ybar[i]/ni
+    treatments.append(treatmentValues)
+
+treatments = np.array(treatments, dtype=object)
+ydbar = ydbar/n
+
+sst1, sse1, sst2, sse2, sst12, sse12 = 0, 0, 0, 0, 0, 0
+for i in range(len(treatments)):
+    for j in treatments[i]:
+        sst1 += (j[0]-ydbar[0])**2
+        sse1 += (j[0]-ybar[i, 0])**2
+        sst2 += (j[1]-ydbar[1])**2
+        sse2 += (j[1]-ybar[i, 1])**2
+        sst12 += j[0]*j[1] - ydbar[0]*ydbar[1]
+        sse12 += j[0]*j[1] - ybar[i, 0]*ybar[i, 1]
+
+ssr1 = sst1 - sse1
+ssr2 = sst2 - sse2
+ssr12 = sst12 - sse12
+
+print('\nFor y1: ')
+print(f'\tSST = {sst1}\n\tSSE = {sse1}\n\tSSR = {ssr1}')
+
+print('\nFor y2: ')
+print(f'\tSST = {sst2}\n\tSSE = {sse2}\n\tSSR = {ssr2}')
+
+print('\nFor cross product of y1 & y2: ')
+print(f'\tSST = {sst12}\n\tSSE = {sse12}\n\tSSR = {ssr12}')
+
+W = np.array([[sse1, sse12], [sse12, sse2]])
+T = np.array([[sst1, sst12], [sst12, sst2]])
+
+lambdaS = det(W)/det(T)
+
+F = ((n-k-1)/(k-1))*(1-lambdaS**0.5)/(lambdaS)**0.5
+Ftab = ss.f.ppf(1-alpha, p*(k-1), p*(n-k-1))
+
+print('Inference: ')
+if F > Ftab:
+    print(f'Fcal > Ftab ({round(F, 2)} > {round(Ftab, 2)}), we reject H0, hence we conclude that there is no homogenity among the treatments')
+else:
+    print(f'Fcal <= Ftab ({round(F, 2)} <= {round(Ftab, 2)}), we accept H0, hence we conclude that there is homogenity among the treatments')
+'''`;
+      const discrim = `#reading inputs
+import numpy as np
+def transpose(A):
+ r=len(A)
+ c=len(A[0])
+ s=[]
+ for i in range(0,c):
+  n=[]
+  for j in range(0,r):
+    n.append(A[j][i])
+  s.append(n)
+ return s
+#matrix multiplication
+def multiplication(A,B):
+ res=[]
+ r1=len(A)
+ c2=len(B[0])
+ for i in range(r1):
+  k=[]
+  for j in range(c2):
+    k.append(0)
+  res.append(k)
+ for i in range(len(A)):
+  for j in range(len(B[0])):
+    for k in range(len(B)):
+      res[i][j]=res[i][j]+A[i][k]*B[k][j]
+ return res
+def getMinor(m,i,j):
+ return [row[:j] + row[j+1:] for row in (m[:i]+m[i+1:])]
+def getDeternminant(m):
+ #base case for 2x2 matrix
+ if len(m) == 2:
+  return m[0][0]*m[1][1]-m[0][1]*m[1][0]
+ determinant = 0
+ for c in range(len(m)):
+  determinant += ((-1)**c)*m[0][c]*getDeternminant(getMinor(m,0,c))
+ return determinant
+def inverse(m):
+ determinant = getDeternminant(m)
+ #special case for 2x2 matrix:
+ if len(m) == 2:
+  return [[m[1][1]/determinant, -1*m[0][1]/determinant],
+ [-1*m[1][0]/determinant, m[0][0]/determinant]]
+ #find matrix of cofactors
+ cofactors = []
+ for r in range(len(m)):
+  cofactorRow = []
+  for c in range(len(m)):
+    minor = getMinor(m,r,c)
+ cofactorRow.append(((-1)**(r+c)) * getDeternminant(minor))
+ cofactors.append(cofactorRow)
+ cofactors = transpose(cofactors)
+ for r in range(len(cofactors)):
+  for c in range(len(cofactors)):
+    cofactors[r][c] = cofactors[r][c]/determinant
+ return cofactors
+
+n=int(input("enter no of independent variables : "))
+a=[]
+print("enter independent variables")
+for i in range(n):
+ l=[float(x) for x in input().split(" ")]
+ a.append(l)
+print("enter dependent variables")
+Y=[x for x in input().split(" ")]
+X=transpose(a)
+print(X)
+x1=[]
+x2=[]
+for i in range(len(X)):
+ if(Y[i]=='yes'):
+  x1.append(X[i])
+ else:
+  x2.append(X[i])
+#calculating means
+mu=np.mean(X,axis=0)
+mu1=np.mean(x1,axis=0)
+mu2=np.mean(x2,axis=0)
+#calculation of Inverse
+mul=(multiplication((transpose(X-mu)),X-mu))
+ni=len(X)
+c=[]
+for i in range(len(mul)):
+ o=[]
+ for j in range(len(mul[0])):
+  o.append(mul[i][j]/ni)
+ c.append(o)
+print('pooled covariance(c) matrix is : ')
+print(c)
+cinv=inverse(c)
+print('c inverse is : ')
+print(cinv)
+#calculation of Fishers Linear Discriminant Function
+mui=[[mu1],[mu2]]
+n1=len(x1)
+n2=len(x2)
+nii=[n1,n2]
+xk=[float(x) for x in input("enter observation to be classified :").split(" ")]
+f=[]
+for i in range(n):
+  a=multiplication((multiplication(mui[i],cinv)),transpose(mui[i]))
+  for j in range(len(a)):
+    a=a[j][0]/2
+  b=multiplication((multiplication(mui[i],cinv)),transpose([xk]))
+  c=np.log(nii[i]/ni)
+  f.append(b-a+c)
+print(f)
+#classification into groups
+for i in range(1,len(f)):
+ t=f[0]
+ if(f[i]>t):
+  print('classify new observation into',i+1,'population')
+
+ else:
+  print('classify new observation into 1st population') `;
+      const companal = `import numpy as np
+import numpy.linalg as linalg
+import math
+#reading inputs
+a=[]
+n=int(input("enter no of variables"))
+for i in range(n):
+ q=[float(x) for x in input().split(" ")]
+ a.append(q)
+X=np.transpose(a)
+#calculating mean
+print('\nGven Matrix is :\n{}'.format(X))
+print('\nMean Values {}'.format(np.mean(X,axis=0)))
+A = (X - np.mean(X, axis=0))
+print('\nStandardized Matrix is :\n {}'.format(A))
+#variance covariance matrix
+VarCov=np.dot(np.transpose(A),A)/len(X)
+print('\nVariance Covariance Matrix is :\n {}'.format(VarCov))
+#calculating eigen values and vectors
+eigenValues, eigenVectors = linalg.eig(VarCov)
+idx = eigenValues.argsort()[::-1]
+eigenValues = eigenValues[idx]
+ 
+eigenVectors = eigenVectors[:,idx]
+print('\nEigen Values are {}'.format(eigenValues))
+print('\nEigen Vectors are {}'.format(eigenVectors))
+#no of principal components to be retained
+k=int(input("enter threshold limit :"))
+s=sum(eigenValues)
+t=[]
+stoppoint=1
+for i in range(len(eigenValues)):
+ numerator=sum(eigenValues[0:i+1])
+ z=(numerator/s)*100
+ if z<=k:
+  stoppoint=stoppoint+1
+ t.append(z)
+print('\nThreshold Table :\n{}'.format(t))
+eigenValues=eigenValues[0:stoppoint]
+eigenVectors=eigenVectors[:,0:stoppoint]
+#retaining eigen values and vectors
+print('\nRetained Eigen Values :\n{}'.format(eigenValues))
+print('\nRetained Eigen Vectors: \n{}'.format(eigenVectors))
+#printing z1 and z2
+print('\n PCA Matrix :\n{}'.format(np.dot(X,eigenVectors)))`;
+      const factanal = `import numpy as np
+n=int(input("enter no of variables"))
+x=[]
+for i in range(n):
+ p=[int(x) for x in input().split(" ")]
+ x.append(p)
+print(x)
+mu=[]
+for i in range(n):
+ mu.append(np.mean(x[i],axis=0))
+print("mean is : ")
+print(mu)
+from math import sqrt
+from statistics import mean
+n1=len(x[0])
+si=[]
+x=np.array(x)
+for i in range(n):
+ k=sum((x[i]-mu[i])**2)
+ si.append(round(sqrt(k/(n1-1)),4))
+print("variance is :" )
+print(si)
+a=[]
+for i in range(n):
+ a.append((x[i]-mu[i])/si[i])
+print(a)
+A=np.transpose(a)
+#variance covariance matrix
+VarCov=np.dot(np.transpose(A),A)/n1
+print('\nVariance Covariance Matrix is :\n {}'.format(VarCov))
+#calculating eigen values and vectors
+eigenValues, eigenVectors = np.linalg.eig(VarCov)
+idx = eigenValues.argsort()[::-1]
+eigenValues = eigenValues[idx]
+eigenVectors = eigenVectors[:,idx]
+print('\nEigen Values are {}'.format(eigenValues))
+print('\nEigen Vectors are {}'.format(eigenVectors))
+#no of principal components to be retained
+k=int(input("enter threshold limit :"))
+s=sum(eigenValues)
+t=[]
+stoppoint=1
+for i in range(len(eigenValues)):
+ numerator=sum(eigenValues[0:i+1])
+ z=(numerator/s)*100
+ if z<=k:
+  stoppoint=stoppoint+1
+ t.append(z)
+print('\nThreshold Table :\n{}'.format(t))
+eigenValues=eigenValues[0:stoppoint]
+eigenVectors=eigenVectors[:,0:stoppoint]
+#retaining eigen values and vectors
+print('\nRetained Eigen Values :\n{}'.format(eigenValues))
+print('\nRetained Eigen Vectors: \n{}'.format(eigenVectors))
+egv=np.transpose(eigenVectors)
+f=[]
+for i in range(len(egv)):
+ o=[]
+ for j in range(n):
+  k=sqrt(eigenValues[i])*egv[i][j]
+ o.append(k)
+ f.append(o)
+print("F1 and f2 values are :")
+print(f)
+h=[]
+for i in range(len(f[0])):
+ h.append(f[0][i]**2+f[1][i]**2)
+print("h2 values are : ")
+print(h)
+sumh=sum(h)
+print(sumh)
+pve=[]
+for i in range(len(eigenValues)):
+ pve.append((eigenValues[i]/sumh)*100)
+print("percentages are : \n")
+print(pve)`;
+      const bestfit = `import numpy as np
+import matplotlib.pyplot as plt
+def lenth(n):
+    c=0
+    for i in n:
+        c+=1
+    return c
+
+
+def c_mean(n):
+    total = 0
+    for num in n:
+        total += num
+    meann = total / lenth(n)
+    return meann
+def c_sum(n):
+    total = 0
+    for num in n:
+        total += num
+    return total
+x = np.array([1, 2, 3, 4, 6,8])
+y = np.array([2.4, 3, 3.6, 4,5, 6])
+
+x_mean = c_mean(x)
+y_mean = c_mean(y)
+
+b= c_sum((x - x_mean) * (y - y_mean)) / c_sum((x - x_mean) ** 2)
+
+a = y_mean - b* x_mean
+
+
+plt.scatter(x, y, color='b', label='Data Points')
+
+plt.plot(x, b*x + a, color='r', label='Best Fit Line')
+
+plt.xlabel('x')
+plt.ylabel('y')
 `;
-  const lin_grad=
-  `
-      <html>
-<head>
-<title>Diagonal Linear Gradient Example</title>
-<style>
-.gradient-box {
-width: 500px;
-height: 500px;
-background: linear-gradient(to bottom right, red, orange, yellow, green, blue, indigo, violet);
-}
-</style>
-</head>
-<body>
-<h1>11A </h1>
-<div class="gradient-box"></div>
-</body>
-</html>
-` ;
-      const frame = `<html>
-<head>
-<title>7A</title>
-</head>
-<frameset rows = "50%,50%">
-<frame name = "top" src = "p1-i.html">
-<frame name = "bottom" src = "p2-ii.html">
-</frameset>
-</html>
+      const seconddeg = `import numpy as np
+import matplotlib.pyplot as plt
+from sympy import symbols, Eq, solve
+
+def get_data_input():
+    x_data = np.array([int(i) for i in input("Enter the x data: ").split()])
+    y_data = np.array([int(i) for i in input("Enter the y data: ").split()])
+    return x_data, y_data
+
+def calculate_coefficients(x_data, y_data):
+    n = len(x_data)
+    sx = np.sum(x_data)
+    sy = np.sum(y_data)
+    sx2 = np.sum(x_data * x_data)
+    sxy = np.sum(x_data * y_data)
+    sx3 = np.sum(x_data * x_data * x_data)
+    sx4 = np.sum(x_data ** 4)
+    sx2y = np.sum(x_data * x_data * y_data)
+    
+    a, b, c = symbols('a b c')
+    eq1 = Eq((n * a + sx * b + sx2 * c), sy)
+    eq2 = Eq((a * sx + sx2 * b + sx3 * c), sxy)
+    eq3 = Eq((a * sx2 + sx3 * b + sx4 * c), sx2y)
+    
+    coefficients = solve((eq1, eq2, eq3), (a, b, c))
+    return coefficients[a], coefficients[b], coefficients[c]
+
+def plot_parabola(x_data, y_data, a, b, c):
+    plt.scatter(x_data, y_data)
+    x_values = np.linspace(min(x_data), max(x_data), 100)
+    y_values = a + b * x_values + c * x_values**2
+    plt.plot(x_values, y_values, color='red')
+    plt.xlabel('X')
+    plt.ylabel('Y')
+    plt.title('Parabolic Regression')
+    plt.show()
+
+def main():
+    x_data, y_data = get_data_input()
+    a, b, c = calculate_coefficients(x_data, y_data)
+    print("The equation of parabola is y = {} + {}X + {}X^".format(a, b, c))
+    plot_parabola(x_data, y_data, a, b, c)
+
+if __name__ == "__main__":
+    main()
 `;
-      const img_gen = `<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>image generator</title>
-    <script>
-        function generate(){
+      const karlpearson = `import numpy as np
+import matplotlib.pyplot as plt
+def lenth(n):
+    c=0
+    for i in n:
+        c+=1
+    return c
+
+
+def c_mean(n):
+    total = 0
+    for num in n:
+        total += num
+    meann = total / lenth(n)
+    return meann
+def c_sum(n):
+    total = 0
+    for num in n:
+        total += num
+    return total
+
+x = np.array([3,7,4,2,0,4,1,2])
+y = np.array([11,18,9,4,7,6,3,8])
+
+x_mean = c_mean(x)
+print("mean of x is",x_mean)
+y_mean = c_mean(y)
+print("mean of y is",y_mean)
+
+cov=(c_sum((x - x_mean) * (y - y_mean)))/lenth(x)
+print(cov)
+sig_x=((c_sum((x - x_mean)**2))/lenth(x))**0.5
+print(sig_x)
+sig_y=((c_sum((y - y_mean)**2))/lenth(y))**0.5
+print(sig_y)
+r=cov/(sig_x * sig_y)
+print("correlation coefficient is",r)
+`;
+      const spearman = `import pandas as pd
+import numpy as np
+from collections import Counter
+
+def calculate_modified_di(x, y):
+    d1 = Counter(x)
+    cf = 0
+    d2 = Counter(y)
+    for i in d1:
+        if d1[i] > 1:
+            cf += d1[i] * (d1[i] * d1[i] - 1) / 12
+    for i in d2:
+        if d2[i] > 1:
+            cf += d2[i] * (d2[i] * d2[i] - 1) / 12
+    return cf
+
+def calculate_spearman_correlation_coefficient(x, y):
+    df_x = pd.DataFrame(x)
+    rx = df_x.rank()[0].to_numpy()
+    df_y = pd.DataFrame(y)
+    ry = df_y.rank()[0].to_numpy()
+    D = rx - ry
+    di2 = np.sum(D * D) + calculate_modified_di(x, y)
+    n = len(x)
+    cc = 1 - (6 * di2 / (n * (n * n - 1)))
+    return cc
+
+def display_results(x, y, rx, ry, D):
+    results = pd.DataFrame({"X": x, "Y": y, "Rₓ": rx, "Rᵧ": ry, "D": D, "D&#178;": D * D})
+    print(results.to_string(index=False))
+
+def main():
+    x = np.array(list(map(float, input("Enter X values: ").split())))
+    y = np.array(list(map(float, input("Enter Y values: ").split())))
+    df_x = pd.DataFrame(x)
+    rx = df_x.rank()[0].to_numpy()
+    df_y = pd.DataFrame(y)
+    ry = df_y.rank()[0].to_numpy()
+    D = rx - ry
+    display_results(x, y, rx, ry, D)
+    correlation_coefficient = calculate_spearman_correlation_coefficient(x, y)
+    print("Spearman's Correlation Coefficient =", round(correlation_coefficient, 4))
+
+if __name__ == "__main__":
+    main()
+
+'''import pandas as pd
+import numpy as np
+
+def Rankify(data):
+    N = len(data)
+    Ranks = [None for i in range(N)]
+
+    for i in range(N):
+        BigNums = 0
+        SameNums = 0
+
+        for j in range(N):
+            if (data[j] > data[i]):
+                BigNums += 1
+            if (data[j] == data[i]):
+                SameNums += 1
+
+        # Use Fractional Rank formula
+        # fractional_rank = (BigNums+1) + (SameNums-1)/2
+        Ranks[i] = (BigNums+1) + (SameNums-1)/2
+
+    return Ranks
+
+def RemDups(data):
+    set_data = []
+
+    for i in data:
+        if i not in set_data:
+            set_data.append(i)
+
+    return set_data
+
+def CF(x,y):
+    cf = 0
+    x = list(x)
+    y = list(y)
+    set_x = RemDups(x)
+    set_y = RemDups(y)
+
+    for i in set_x:
+        count_x = x.count(i)
+        if count_x > 1:
+            cf += (count_x * (count_x**2 - 1)) / 12
+
+    for i in set_y:
+        count_y = y.count(i)
+        if count_y > 1:
+            cf += (count_y * (count_y**2 - 1)) / 12
+
+    return cf
+
+def SRCC(x,y):
+    n = len(x)
+    m = len(y)
+
+    if n != m:
+        print("Invalid Data!")
+        return
+
+    RankX = np.array(Rankify(x))
+    RankY = np.array(Rankify(y))
+
+    # Difference of Ranks:
+    Di = RankX - RankY
+    DiSq = Di**2
+
+    SumDiSq = sum(DiSq)
+
+    # Correction Factor:
+    cf = CF(x,y)
+    SumDiSq += cf
+
+    SRCC = 1 - ((6 * SumDiSq) / (n * (n**2 - 1)))
+
+    SRCC_Table = {
+        "X values": x,
+        "Y values": y,
+        "Ranks of X": RankX,
+        "Ranks of Y": RankY,
+        "Di values": Di,
+        "Di sq. values": DiSq}
+
+    print(pd.DataFrame(SRCC_Table))
+
+    print("Correction Factor: ",cf)
+    print("Sum of Di sq: ",SumDiSq)
+    print("The Spearman's Ranked Correlation Coefficient of the given data: {:.4f}".format(SRCC))
+
+x = np.array([float(i) for i in input("Enter x values: ").strip().split()])
+y = np.array([float(i) for i in input("Enter y values: ").strip().split()])
+
+SRCC(x,y)
+'''    `;
+      const twoanova = `import pandas as pd
+import scipy.stats as se
+
+def calculate_SS_and_F_values(t, h, k, alpha):
+    Ti = Bj = G = RSS = N = 0
+
+    for i in t:
+        Ti += sum(i) * sum(i)
+        G += sum(i)
+    
+    for i in range(len(t[0])):
+        position_sum = sum(sublist[i] for sublist in t)
+        Bj += position_sum ** 2
+    
+    for i in t:
+        for j in i:
+            RSS += j * j
+            N += 1
             
-            var arr=["img001.jpg","img002.jpg","img004.jpg","img006.jpg","img007.jpg"];
-            var x=Math.floor(Math.random()*5);
-            document.getElementById("pic").src=arr[x];
-        }
-    </script>
-</head>
-<body>
-    <img src="" id="pic" height="200" width="200">
-    <button value="generate" onclick="generate()">asdfg</button>
-</body>
-</html>
-`;
-      const form_eve = `<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Events</title>
-    <script>
-        function changefunction(){
-            var data=document.getElementById("change").value;
-            document.getElementById("changeoutput").innerHTML=data;
-        }
-        function focusfunction(){   
-            document.getElementById("focus").style.backgroundColor="#C1EFFF";
-        }
-        function blurfunction(){
-            var data=document.getElementById("focus").value;
-            document.getElementById("focus").style.backgroundColor="";
-            document.getElementById("bluroutput").innerHTML=data;
-        }
-    </script>
-</head>
-<body>
-    <h1>Onchange event</h1>
-    <input id="change" type="text" onchange="changefunction()">
-    <h3>Your given text:  <span id="changeoutput"></span></h3>
-    <h1>Onfocus event and Onblur event</h1>
-    <input id="focus" type="text" onfocus="focusfunction()" onblur="blurfunction()">
-    <h3>Your given text:  <span id="bluroutput"></span></h3>
-</body>
-</html>
-`;
-      const mouse = `<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mouse-Events</title>
-    <script>
-        function clickfunction(){
-            document.getElementById("clickoutput").innerHTML="Clicked!!";
-        }
-        function movefunction(){   
-            document.getElementById("move").innerHTML="After Move";
-        }
-        function downfunction(){
-            document.getElementById("downoutput").innerHTML="Mouse Down!!";
-        }
-        function upfunction(){
-            document.getElementById("upoutput").innerHTML="Mouse Up!!";
-        }
-        function overfunction(){   
-            document.getElementById("over").innerHTML="Mouse Over";
-        }
-        function outfunction(){
-            document.getElementById("over").innerHTML="Mouse Out";
-        }
-    </script>
-</head>
-<body>
-    <h1>Onclick event</h1>
-    <input id="click" type="button" onclick="clickfunction()" value="Button">
-    <h3 id="clickoutput"></h3>
-    <h1>Onmousemove event</h1>
-    <h3 id="move" onmousemove="movefunction()">Before Move</h3>
-    <h1>Onmousedown event and Onmouseup event</h1>
-    <input id="down" type="button" onmousedown="downfunction()" onmouseup="upfunction()" value="Button">
-    <h3 id="downoutput"></h3>
-    <h3 id="upoutput"></h3>
-    <h1>Onmouseover event</h1>
-    <h3 id="over" onmouseover="overfunction()" onmouseout="outfunction()">Before Over</h3>
-</body>
-</html>
-`;
-      const xml= `<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE lib [
-<!ELEMENT lib (book+)>
-<!ELEMENT book (bname,bprice,bauthor,bpub)>
-<!ELEMENTbname (#PCDATA)>
-<!ELEMENTbprice (#PCDATA)>
-<!ELEMENTbauthor (#PCDATA)>
-<!ELEMENTbpub (#PCDATA)>
-]>
-<lib>
-<book>
-<bname>HTML</bname>
-<bprice>200</bprice>
-<bauthor>abhiram</bauthor>
-<bpub>XYZ</bpub>
-</book>
-<book>
-<bname>HTML</bname>
-<bprice>200</bprice>
-<bauthor>abhiram</bauthor>
-<bpub>XYZ</bpub>
-</book>
-</lib>
-`;
-      const servlet = `Java code
-import java.io.*;
-import java.util.*;
-import javax.servlet.*;
-import javax.servlet.http.*;  
+    CF = round(G * G / N, 2)
+    SST = round(RSS - CF, 2)
+    SStr = round(Ti / h - CF, 2)
+    SSb = round(Bj / k - CF, 2)
+    SSe = round(SST - SStr - SSb, 2)
+    
+    Ftr = round((SStr / (k - 1)) / (SSe / ((k - 1) * (h - 1))), 3)
+    Fb = round((SSb / (h - 1)) / (SSe / ((k - 1) * (h - 1))), 3)
+    
+    return SStr, SSb, SSe, SST, Ftr, Fb
 
-public class Validate extends HttpServlet
+def generate_summary_table(SStr, SSb, SSe, SST, k, h, alpha, Ftr, Fb):
+    data = {
+        "Source of Variation": ["Treatments", "Blocks", "Error", "Total"],
+        'Sum of Squares': [SStr, SSb, SSe, SST],
+        'DOF': [k - 1, h - 1, (h - 1) * (k - 1), k * h - 1],
+        'Mean Sum of Squares': [round(SStr / (k - 1), 2), round(SSb / (h - 1), 2), round(SSe / ((k - 1) * (h - 1)), 2), "-"],
+        'Variance Ratio': ["-", Ftr, Fb, "-"]
+    }
+    df = pd.DataFrame(data)
+    print(df.to_string(index=False))
+    return Ftr, Fb
 
-{  
-public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-    {  
+def inference(Ftr, Fb, k, h, alpha):
+    if Ftr > 1:
+        Ftabtr = round(se.f.ppf(q=1 - alpha, dfn=k - 1, dfd=(k - 1) * (h - 1)), 2)
+    else:
+        Ftabtr = round(se.f.ppf(q=1 - alpha, dfn=(k - 1) * (h - 1), dfd=k - 1), 2)
+    
+    print("\n---Inference related to Treatments---")
+    print("F calculated value =", Ftr, "\nF table value =", Ftabtr)
+    if Ftr < Ftabtr:
+        print("Since Fcal.<Ftable value, We accept H₀(tr).")
+    else:
+        print("Since Fcal.>Ftable value, We reject H₀(tr).")
+    
+    if Fb > 1:
+        Ftabb = round(se.f.ppf(q=1 - alpha, dfn=h - 1, dfd=(k - 1) * (h - 1)), 2)
+    else:
+        Ftabb = round(se.f.ppf(q=1 - alpha, dfn=(k - 1) * (h - 1), dfd=h - 1), 2)
+    
+    print("\n---Inference related to Blocks---")
+    print("F calculated value =", Fb, "\nF table value =", Ftabb)
+    if Fb < Ftabb:
+        print("Since Fcal.<Ftable value, We accept H₀(b).")
+    else:
+        print("Since Fcal.>Ftable value, We reject H₀(b).")
 
-response.setContentType("text/html");  
-PrintWriter out = response.getWriter();  
-    String u=request.getParameter("username");
-    String p=request.getParameter("password");    
-    if(u.equals("rvr")==true &&p.equals("rvr"))
 
-       {
-out.println("valid user");
-       }
-     else
-       {
-out.println("invalid user"); 
-       }
-   }
+def main():
+    h = int(input("Enter no. of Blocks: "))
+    k = int(input("Enter no. of Treatments: "))
+    t = []
+    for i in range(k):
+        t.append(list(map(int, input("Enter treatment(s): ").split())))
+    
+    alpha = float(input("Enter Level of Significance: "))
+    
+    SStr, SSb, SSe, SST, Ftr, Fb = calculate_SS_and_F_values(t, h, k, alpha)
+    df = generate_summary_table(SStr, SSb, SSe, SST, k, h, alpha, Ftr, Fb)
+    inference(Ftr, Fb, k, h, alpha)
+
+if __name__ == "__main__":
+    main()
+
+`;
+      const mutli = `import numpy as np
+import pandas as pd
+import scipy.stats as se
+
+def transpose(A):
+ r=len(A)
+ c=len(A[0])
+ s=[]
+ for i in range(0,c):
+  n=[]
+  for j in range(0,r):
+    n.append(A[j][i])
+  s.append(n)
+ return s
+#matrix multiplication
+def multiplication(A,B):
+ res=[]
+ r1=len(A)
+ c2=len(B[0])
+ for i in range(r1):
+  k=[]
+  for j in range(c2):
+    k.append(0)
+  res.append(k)
+ for i in range(len(A)):
+  for j in range(len(B[0])):
+    for k in range(len(B)):
+      res[i][j]=res[i][j]+A[i][k]*B[k][j]
+ return res
+#matrix inverse
+def getMinor(m,i,j):
+ return [row[:j] + row[j+1:] for row in (m[:i]+m[i+1:])]
+def getDeternminant(m):
+ #base case for 2x2 matrix
+ if len(m) == 2:
+  return m[0][0]*m[1][1]-m[0][1]*m[1][0]
+ determinant = 0
+ for c in range(len(m)):
+  determinant += ((-1)**c)*m[0][c]*getDeternminant(getMinor(m,0,c))
+ return determinant
+def inverse(m):
+ determinant = getDeternminant(m)
+ #special case for 2x2 matrix:
+ if len(m) == 2:
+  return [[m[1][1]/determinant, -1*m[0][1]/determinant],
+ [-1*m[1][0]/determinant, m[0][0]/determinant]]
+ #find matrix of cofactors
+ cofactors = []
+ for r in range(len(m)):
+  cofactorRow = []
+  for c in range(len(m)):
+    minor = getMinor(m,r,c)
+ cofactorRow.append(((-1)**(r+c)) * getDeternminant(minor))
+ cofactors.append(cofactorRow)
+ cofactors = transpose(cofactors)
+ for r in range(len(cofactors)):
+  for c in range(len(cofactors)):
+    cofactors[r][c] = cofactors[r][c]/determinant
+ return cofactors
+ 
+
+alpha = float(input("Enter Level of Significance: "))
+y = np.array(list(map(int, input("Enter Dependent Variable Values(Y): ").split())))
+n = int(input("Enter num. of Independent Variables: "))
+N = len(y)
+x = []
+temp = []
+t = [1] * len(y)
+x.append(t)
+
+for i in range(n):
+    u = list(map(int, input("Enter Independent Variables Values(X values): ").split()))
+    x.append(u)
+    temp.append(u)
+
+temp = np.array(temp)
+x = np.array(x)
+x = np.transpose(x)
+y = np.transpose(y)
+beta = np.dot(np.linalg.inv(np.dot(transpose(x), x)), np.dot(transpose(x), y))
+
+print("Y = ", end="", sep="")
+for i in range(len(beta)):
+    if i == len(beta) - 1:
+        print(round(beta[i], 4), "X", i, end="\n", sep="")
+    else:
+        print(round(beta[i], 4), "X", i, " + ", end="", sep="")
+
+ycap = []
+for i in range(len(y)):
+    ycap.append(beta[0] + temp[0][i] * beta[1] + temp[1][i] * beta[2])
+
+sigma = y - ycap
+SSe = SST = 0
+for i in range(len(sigma)):
+    SSe += round(sigma[i] * sigma[i], 2)
+    SST += round((y[i] - np.mean(y)) ** 2, 2)
+
+SSr = SST - SSe
+R2 = round(SSr / SST, 2)
+print("R² value is:", R2)
+
+if R2 > 0.9:
+    print("The Model is a Good Fit.")
+else:
+    print("The Model is Not a Good Fit.")
+
+n = n + 1
+F = round((SSr / (n - 1)) / (SSe / (N - n)), 3)
+data = {
+    "Source of Variation": ["Regression", "Error", "Total"],
+    'Sum of Squares': [SSr, SSe, SST],
+    'DOF': [n - 1, N - n, N - 1],
+    'Mean Sum of Squares': [round(SSr / (n - 1), 2), round(SSe / (N - n), 2), "-"],
+    'Variance Ratio': ["-", F, "-"]
 }
-HTML CODE:
-<html>
-<body>
-<form action="./check1" method=GET>
-<input type="text" name="username" value="username"><br>
-<input type="text" name="password" value="password"><br>
-<input type="submit" value="go">
-</form>
-</body>
-</html>
+df = pd.DataFrame(data).to_string(index=False)
+print(df)
+
+if F > 1:
+    Ftab = round(se.f.ppf(q=1 - alpha, dfn=n - 1, dfd=N - n), 2)
+else:
+    F = round(1 / F, 2)
+    Ftab = round(se.f.ppf(q=1 - alpha, dfn=N - n, dfd=n - 1), 2)
+
+print("F calculated value =", F, "\nF table value =", Ftab)
+
+if F < Ftab:
+    print("Since Fcal.<Ftable value, We accept H₀.")
+else:
+    print("Since Fcal.>Ftable value, We reject H₀.")
+
+'''import numpy as np
+
+def mat_multiply(mat1, mat2):
+    if mat1.shape[1] != mat2.shape[0]:
+        print("Cannot multiply the matrices!!")
+        return
+
+    mat3 = np.zeros([mat1.shape[0],mat2.shape[1]], dtype=float)
+
+    for i in range(len(mat1)):
+        for j in range(len(mat2[0])):
+            for k in range(len(mat2)):
+                mat3[i][j] += mat1[i][k] * mat2[k][j]
+
+    return mat3
+
+def mat_transpose(mat):
+    result = np.zeros((mat.shape[1], mat.shape[0]), dtype=float)
+
+    for i in range(mat.shape[0]):
+       for j in range(mat.shape[1]):
+           result[j][i] = mat[i][j]
+
+    return result
+
+Y_dim = int(input("Enter number of Y variables: "))
+X_dim = int(input("Enter number of X variables: "))
+
+Y = []
+X = []
+
+for i in range(Y_dim):
+    Y_row = np.array([float(j) for j in input(f"Enter Y{i} values: ").strip().split()])
+    Y.append(Y_row)
+
+X.append(np.array([1 for i in range(len(Y[0]))]))
+for i in range(1, X_dim):
+    X_row =  np.array([float(j) for j in input(f"Enter X{i} values: ").strip().split()])
+    X.append(X_row)
+
+Y = np.array(Y)
+X = np.array(X)
+
+XTX = mat_multiply(X, mat_transpose(X))
+
+XTX_inv = np.linalg.inv(XTX)
+
+XTY = mat_multiply(X,mat_transpose(Y))
+
+Beta = mat_transpose(mat_multiply(XTX_inv,XTY))
+eta = mat_transpose(mat_multiply(XTX_inv,XTY))
+
+Yfitted = []
+for i in range(len(Y)):
+    row = 0
+    for j in range(len(X)):
+        row += Beta[i][j]*X[j]
+    Yfitted.append(row)
+
+Yfitted = np.array(Yfitted)
+
+print("\nThe Multi Variate Linear Regression Models for the given data:")
+for i in range(len(Y)):
+    output = f"Y{i} = ({round(Beta[i][0],4)})"
+    for j in range(1, len(X)):
+        output += f" + ({round(Beta[i][j],4)})X{j}"
+    print(output)
+'''    `;
+      const multiv = `import numpy as np
+
+def get_user_input(prompt):
+    return list(map(float, input(prompt).split()))
+
+def calculate_beta(x, y):
+    x_transpose = np.transpose(x)
+    inv_x_dot_x_transpose = np.linalg.inv(np.dot(x_transpose, x))
+    beta = np.dot(np.dot(inv_x_dot_x_transpose, x_transpose), y)
+    return beta
+    
+def print_regression_equation(beta):
+    y_expressions = []
+    for i, coefficients in enumerate(beta):
+        expression = "Y{} = ".format(i + 1)
+        for j, coef in enumerate(coefficients):
+            expression += " {}X{} +".format(coef, j + 1)
+        y_expressions.append(expression[:-2])  # remove the extra '+' and space
+    for expression in y_expressions:
+        print(expression)
+
+def main():
+    y = []
+    x = []
+    n1 = int(input("Enter num. of Dependent Variables(Y's): "))
+    n2 = int(input("Enter num. of Independent Variables(X's): "))
+
+    for i in range(n1):
+        y.append(get_user_input("Y{}: ".format(i + 1)))
+    x.append([1] * len(y[0]))
+
+    for i in range(n2):
+        x.append(get_user_input("X{}: ".format(i + 1)))
+
+    x = np.array(x)
+    y = np.array(y)
+
+    beta = calculate_beta(x, y)
+    beta = np.round(beta, decimals=2)
+    print_regression_equation(beta)
+
+if __name__ == "__main__":
+    main()
+
 `;
+      const oneanova = `#5th
+import numpy as np
+import scipy.stats as sp
+def add(lst):
+    total = 0
+    for item in lst:
+        total += item
+    return total
+def leng(lst):
+    length = 0
+    for _ in lst:
+        length += 1
+    return length
+alpha = float(input("Enter the level of significance"))
+n = int(input("Enter number of treatments: "))
+anova = []
+G = 0
+N=0
+Tss=0
+T1 = []
+T2 = []
+for i in range(n):
+    l = list(map(float, input("Enter value :").split()))
+    T1.append(add(l))
+    N += leng(l)
+    anova.append(l)
+G = add(T1)
+for i in range(n):
+    T2.append((add(anova[i])** 2)/leng(anova[i]))
+cf = G ** 2 / N
+sst = add(T2) - cf
+for l in anova:
+    for j in l:
+        Tss += j ** 2
+sstr = Tss - cf
+print("Treatment sum of squares:", sst)
+E = sstr - sst
+print("Error sum of squares:", E)
+print("Total sum of squares:", sstr)
+t1 = sst / (n - 1)
+e1 = E / (N - n)
+fcal = t1 / e1
+print("f calculated value : ",fcal)
+ftab = sp.f.ppf(1-alpha, n - 1, N - n)
+ftab=round(ftab,2)
+print("ftable value : ",ftab)
+if fcal <= ftab:
+    print("We accept H0")
+else:
+    print("We reject H0")`;
 
-      const implicit = `<html>
-<body>
-<form action="welcome.jsp">
-<input type="text" name="uname">
-<input type="submit" value="go"><br/>
-</form>
-</body>
-</html>
-
-welcome.jsp
-
-<html>
-<body>
-<% 
-String name=request.getParameter("uname");  
-out.print("welcome "+name);  
-%>
-</body>
-</html>
-`;
-      const jsp_action = `1.jsp
-<html>
-<body>
-<jsp:include page="2.jsp"/>
-</body>
-</html>
-
-	2.jsp
-<html>
-<body>
-<jsp:forward page="3.jsp">
-<jsp:param name="name" value="CSE”/>
-</jsp:forward>
-</body>
-</html>
-
-3.jsp
-<html>
-<body>
-<%String s=request.getParameter("name");%>
-<%out.print(s);%>
-</body>
-</html>`;
       function copyToClipboard(code) {
         navigator.clipboard.writeText(code).then(
           function () {
