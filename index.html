@@ -14,7 +14,8 @@
         margin-left: 20px;
       }
 
-      .program {
+      .program,
+      .lab {
         margin-bottom: 20px;
       }
 
@@ -35,1098 +36,599 @@
   <body>
     <div class="program-list">
       <div class="program">
-        <h4>1. Best Fit straight line</h4>
-        <button class="copy-btn" onclick="copyToClipboard(bestfit)">cop</button>
+        <h4>1.nestle</h4>
+        <button class="copy-btn" onclick="copyToClipboard(prog1)">cop</button>
       </div>
       <div class="program">
-        <h4>2. Second degree Parabola</h4>
-        <button class="copy-btn" onclick="copyToClipboard(seconddeg)">
+        <h4>2.lab 2</h4>
+        <button class="copy-btn" onclick="copyToClipboard(prog2)">
           cop
         </button>
       </div>
+      <div class="lab">
+        <h3>lab 3</h3>
+        <div class="program">
+          <h4>product stock</h4>
+          <button class="copy-btn" onclick="copyToClipboard(prog3_product)">
+            cop
+          </button>
+        </div>
+        <div class="program">
+          <h4>gross slary</h4>
+          <button class="copy-btn" onclick="copyToClipboard(prog3_grosspay)">
+            cop
+          </button>
+        </div>
+        <div class="program">
+          <h4>del_history</h4>
+          <button class="copy-btn" onclick="copyToClipboard(prog3_del_his)">
+            cop
+          </button>
+        </div>
+        <div class="program">
+            <h4>low&h paid</h4>
+            <button class="copy-btn" onclick="copyToClipboard(prog3_9)">
+              cop
+            </button>
+          </div>
+          <div class="program">
+            <h4>bank</h4>
+            <button class="copy-btn" onclick="copyToClipboard(prog3_10)">
+              cop
+            </button>
+          </div>
+          <div class="program">
+          <h4>built in exce</h4>
+          <button class="copy-btn" onclick="copyToClipboard(prog3_11)">
+            cop
+          </button>
+          </div>
+          <div class="program">
+            <h4>-ve quantity</h4>
+            <button class="copy-btn" onclick="copyToClipboard(prog3_12)">
+              cop
+            </button>
+            </div>
+        </div>
+      </div>
       <div class="program">
-        <h4>3. Karl Pearson's</h4>
-        <button class="copy-btn" onclick="copyToClipboard(karlpearson)">
+        <h4>4.lab4</h4>
+        <button class="copy-btn" onclick="copyToClipboard(prog4)">
           cop
         </button>
       </div>
-      <div class="program">
-        <h4>4. One way Anova</h4>
-        <button class="copy-btn" onclick="copyToClipboard(oneanova)">
-          cop
-        </button>
-      </div>
-      <div class="program">
-        <h4>5. Spearman's</h4>
-        <button class="copy-btn" onclick="copyToClipboard(spearman)">
-          cop
-        </button>
-      </div>
-      <div class="program">
-        <h4>6. Two Way Anova</h4>
-        <button class="copy-btn" onclick="copyToClipboard(twoanova)">
-          cop
-        </button>
-      </div>
-      <div class="program">
-        <h4>7. Multi linear Regression</h4>
-        <button class="copy-btn" onclick="copyToClipboard(mutli)">cop</button>
-      </div>
-      <div class="program">
-        <h4>8. Multi Variate Regression</h4>
-        <button class="copy-btn" onclick="copyToClipboard(multiv)">cop</button>
-      </div>
-      <div class="program">
-        <h4>9. Multi Variate analysis</h4>
-        <button class="copy-btn" onclick="copyToClipboard(multivanal)">
-          cop
-        </button>
-      </div>
-      <div class="program">
-        <h4>10. discriminent analysis</h4>
-        <button class="copy-btn" onclick="copyToClipboard(discrim)">cop</button>
-      </div>
-      <div class="program">
-        <h4>11. component analysis</h4>
-        <button class="copy-btn" onclick="copyToClipboard(companal)">
-          cop
-        </button>
-      </div>
-      <div class="program">
-        <h4>12. factor analysis</h4>
-        <button class="copy-btn" onclick="copyToClipboard(factanal)">
-          cop
-        </button>
-      </div>
+      
     </div>
     <script>
-      const multivanal = `import numpy as np
-n1=int(input("enter no of treatements"))
-p=[]
-for i in range(n1):
-  p.append(int(input("enter no of subgroups in treatements")))
-a=[]
-for i in range(len(p)):
- b=[]
- for j in range(p[i]):
-  q=[int(x) for x in input().split(" ")]
- b.append(q)
- a.append(b)
-print(a)
-yii=[]
-ybar=[]
-sum2=0
-sum3=0
-k=0
-for i in range(n1):
- sum=0
- sum1=0
- yi=[]
- for j in range(p[i]):
-  sum=sum+a[i][j][0]
-  sum1=sum1+a[i][j][1]
-  sum2=sum2+a[i][j][0]
-  sum3=sum3+a[i][j][1]
- k=k+p[i]
- sum=sum/p[i]
- sum1=sum1/p[i]
- yi.append(sum)
- yi.append(sum1)
- yii.append(yi)
-sum2=sum2/k
-sum3=sum3/k
-ybar.append(sum2)
-ybar.append(sum3)
-print(yii)
-print(ybar)
-#y1 and y2 and cross product of y1,y2
-sse1=sst1=sse2=sst2=sse12=sst12=0
-for i in range(n1):
- for j in range(p[i]):
-  sse1=sse1+((a[i][j][0]-yii[i][0])**2)
-  sst1=sst1+((a[i][j][0]-ybar[0])**2)
-  sse2=sse2+((a[i][j][1]-yii[i][1])**2)
-  sst2=sst2+((a[i][j][1]-ybar[1])**2)
-  sse12=sse12+((a[i][j][0]*a[i][j][1])-(yii[i][0]*yii[i][1]))
-  sst12=sst12+((a[i][j][0]*a[i][j][1])-(ybar[0]*ybar[1]))
-print('for y1 ')
-print('sse : ',sse1)
-print('sst : ',sst1)
-ssr1=sst1-sse1
-print('ssr : ',ssr1)
-print('for y2 ')
-print('sse : ',sse2)
-print('sst : ',sst2)
-ssr2=sst2-sse2
-print('ssr : ',ssr2)
-print('cross product values of y1 and y2 ')
-print('sse : ',sse12)
-print('sst : ',sst12)
-ssr12=sst12-sse12
-print('ssr : ',ssr12)
-w1=[sse1,sse12,sse12,sse2]
-t1=[sst1,sst12,sst12,sst2]
-w=(w1[0]*w1[3])-(w1[1]*w1[2])
-t=(t1[0]*t1[3])-(t1[1]*t1[2])
-delta=w/t
-#f-test
-from math import sqrt
-f=((k-n1-1)/(n1-1))*((1-sqrt(delta))/sqrt(delta))
-print('f calculated value is :',f)
-import scipy.stats as stats
-p=len(a[0][0])
-ftab=stats.f.ppf(1-0.05,p*(n1-1),p*(k-n1-1))
-print('f table value is :',ftab)
-if(f>ftab):
- print("Reject Null Hypothesis")
-else:
- print("Accept Null Hypothesis")
- '''import numpy as np
-import scipy.stats as ss
 
-def det(mat):
-    return mat[0,0]*mat[1,1]-mat[0,1]*mat[1,0]
+      const prog1 = `> select count(distinct id) from takes where course_id in
+ (select course_id from teaches where id=45565);
+> select i1.name from instructor i1 where salary>any(select salary from instructor where dept_name='Biology')
+>select dept_name from instructor group by dept_name having avg(salary)=
+ (select max(avg(salary)) from instructor group by dept_name);
+>select t1.course_id from teaches t1 where exists
+(select * from teaches t2 where t1.course_id=t2.course_id
+and t1.semester='Fall' and t1.year=2009 and t2.semester='Spring' and t2.year=2010);
+>select t1.course_id from teaches t1 where t1.semester='Fall' and t1.year=2009 and 
+not exists (select distinct course_id from teaches where t1.course_id=course_id and semester='Spring' and year=2010)
+>select course_id from teaches where semester='Fall' and year=2009
+and course_id in (select course_id from teaches where semester='Spring' and year=2010)
+>select id from takes t1 where not exists((select course_id from course where dept_name='Biology
+ MINUS
+ (select course_id from takes t2 where t1.id=t2.id))
+>select course_id from teaches t1 where year=2009 group by course_id
+having count(*)>1;
+>select course_id from teaches t1 where year=2009 group by course_id
+having count(*)>2
+>select avg(salary) ,dept_name from instructor group by dept_name having avg(salary)>=42000;
+>select dept_name from department group by dept_name having max(budget) =
+ (select max(budget) from department)
+>select name from instructor where id not in (select id from teaches);
+> select id,name from student s1 where id not in (select id from takes t1 where t1.semester='Spring' and t1.year<=2009)
+>select min(salary) from instructor where salary in
+(select max(salary) from instructor group by dept_name)
+>select id,name from instructor where dept_name='Comp. Sci.';
+>`;
+      const prog4=`create or replace procedure raisesal(n number) as
+	s number;
+	a number;
+	exc exception;
+begin
+	s:=incr(n);
+	select sal into a from emp2 where empno=n;
+	if a is null then raise exc;
+	else update emp2 set sal=sal+s where empno=n;
+	end if;
+exception
+	when no_data_found then
+		dbms_output.put_line('this employee is not exists');
+	when exc then
+		dbms_output.put_line('salary is null');
+end;
 
-n = int(input("Enter total number of groups: "))
-k = int(input("Enter number of treatments: "))
-p = int(input("Enter the number of observations in each group: "))
-alpha = float(input("Enter Level of Significance: "))
+MAIN PROGRAM
 
-treatments = []
-ybar = np.array([[0,0] for i in range(k)])
-ydbar = np.array([0, 0])
+declare
+	n number:=&no;
+	r emp2%rowtype;
+begin
+	raisesal(n);
+	select * into r from emp2 where empno = n;
+	dbms_output.put_line(r.empno||’  ‘||r.sal);
 
-for i in range(k):
-    ni = int(input(f"Enter number of groups in treatment{i+1}: "))
-    treatmentValues = np.empty((0, p))
+end;
+2
+create or replace function dept_sal(dno number) return number as
+ts number;
+begin
+select sum(sal) into ts from emp where deptno=dno;
+return ts;
+end;
+3
+create or replace function incr(n number) return number as 
+	s number;
+begin
+		select sal into s from emp2 where empno=n;
+		if s <= 3000 then s:=0.3*s;
+		elsif s>3000 and s<=6000 then
+			s:=0.2*s;
+		else    s:=0.1*s;
+		end if;
+		return s;
+end;
 
-    for j in range(ni):
-        groups = np.array([float(k) for k in input(f"\tEnter the values of group{j+1}: ").split()])
-        treatmentValues = np.append(treatmentValues, np.array([groups]), axis=0)
-        ybar[i] = ybar[i]+groups
-        ydbar = ydbar + groups
+MAIN PROGRAM
 
-    ybar[i] = ybar[i]/ni
-    treatments.append(treatmentValues)
-
-treatments = np.array(treatments, dtype=object)
-ydbar = ydbar/n
-
-sst1, sse1, sst2, sse2, sst12, sse12 = 0, 0, 0, 0, 0, 0
-for i in range(len(treatments)):
-    for j in treatments[i]:
-        sst1 += (j[0]-ydbar[0])**2
-        sse1 += (j[0]-ybar[i, 0])**2
-        sst2 += (j[1]-ydbar[1])**2
-        sse2 += (j[1]-ybar[i, 1])**2
-        sst12 += j[0]*j[1] - ydbar[0]*ydbar[1]
-        sse12 += j[0]*j[1] - ybar[i, 0]*ybar[i, 1]
-
-ssr1 = sst1 - sse1
-ssr2 = sst2 - sse2
-ssr12 = sst12 - sse12
-
-print('\nFor y1: ')
-print(f'\tSST = {sst1}\n\tSSE = {sse1}\n\tSSR = {ssr1}')
-
-print('\nFor y2: ')
-print(f'\tSST = {sst2}\n\tSSE = {sse2}\n\tSSR = {ssr2}')
-
-print('\nFor cross product of y1 & y2: ')
-print(f'\tSST = {sst12}\n\tSSE = {sse12}\n\tSSR = {ssr12}')
-
-W = np.array([[sse1, sse12], [sse12, sse2]])
-T = np.array([[sst1, sst12], [sst12, sst2]])
-
-lambdaS = det(W)/det(T)
-
-F = ((n-k-1)/(k-1))*(1-lambdaS**0.5)/(lambdaS)**0.5
-Ftab = ss.f.ppf(1-alpha, p*(k-1), p*(n-k-1))
-
-print('Inference: ')
-if F > Ftab:
-    print(f'Fcal > Ftab ({round(F, 2)} > {round(Ftab, 2)}), we reject H0, hence we conclude that there is no homogenity among the treatments')
-else:
-    print(f'Fcal <= Ftab ({round(F, 2)} <= {round(Ftab, 2)}), we accept H0, hence we conclude that there is homogenity among the treatments')
-'''`;
-      const discrim = `#reading inputs
-import numpy as np
-def transpose(A):
- r=len(A)
- c=len(A[0])
- s=[]
- for i in range(0,c):
-  n=[]
-  for j in range(0,r):
-    n.append(A[j][i])
-  s.append(n)
- return s
-#matrix multiplication
-def multiplication(A,B):
- res=[]
- r1=len(A)
- c2=len(B[0])
- for i in range(r1):
-  k=[]
-  for j in range(c2):
-    k.append(0)
-  res.append(k)
- for i in range(len(A)):
-  for j in range(len(B[0])):
-    for k in range(len(B)):
-      res[i][j]=res[i][j]+A[i][k]*B[k][j]
- return res
-def getMinor(m,i,j):
- return [row[:j] + row[j+1:] for row in (m[:i]+m[i+1:])]
-def getDeternminant(m):
- #base case for 2x2 matrix
- if len(m) == 2:
-  return m[0][0]*m[1][1]-m[0][1]*m[1][0]
- determinant = 0
- for c in range(len(m)):
-  determinant += ((-1)**c)*m[0][c]*getDeternminant(getMinor(m,0,c))
- return determinant
-def inverse(m):
- determinant = getDeternminant(m)
- #special case for 2x2 matrix:
- if len(m) == 2:
-  return [[m[1][1]/determinant, -1*m[0][1]/determinant],
- [-1*m[1][0]/determinant, m[0][0]/determinant]]
- #find matrix of cofactors
- cofactors = []
- for r in range(len(m)):
-  cofactorRow = []
-  for c in range(len(m)):
-    minor = getMinor(m,r,c)
- cofactorRow.append(((-1)**(r+c)) * getDeternminant(minor))
- cofactors.append(cofactorRow)
- cofactors = transpose(cofactors)
- for r in range(len(cofactors)):
-  for c in range(len(cofactors)):
-    cofactors[r][c] = cofactors[r][c]/determinant
- return cofactors
-
-n=int(input("enter no of independent variables : "))
-a=[]
-print("enter independent variables")
-for i in range(n):
- l=[float(x) for x in input().split(" ")]
- a.append(l)
-print("enter dependent variables")
-Y=[x for x in input().split(" ")]
-X=transpose(a)
-print(X)
-x1=[]
-x2=[]
-for i in range(len(X)):
- if(Y[i]=='yes'):
-  x1.append(X[i])
- else:
-  x2.append(X[i])
-#calculating means
-mu=np.mean(X,axis=0)
-mu1=np.mean(x1,axis=0)
-mu2=np.mean(x2,axis=0)
-#calculation of Inverse
-mul=(multiplication((transpose(X-mu)),X-mu))
-ni=len(X)
-c=[]
-for i in range(len(mul)):
- o=[]
- for j in range(len(mul[0])):
-  o.append(mul[i][j]/ni)
- c.append(o)
-print('pooled covariance(c) matrix is : ')
-print(c)
-cinv=inverse(c)
-print('c inverse is : ')
-print(cinv)
-#calculation of Fishers Linear Discriminant Function
-mui=[[mu1],[mu2]]
-n1=len(x1)
-n2=len(x2)
-nii=[n1,n2]
-xk=[float(x) for x in input("enter observation to be classified :").split(" ")]
-f=[]
-for i in range(n):
-  a=multiplication((multiplication(mui[i],cinv)),transpose(mui[i]))
-  for j in range(len(a)):
-    a=a[j][0]/2
-  b=multiplication((multiplication(mui[i],cinv)),transpose([xk]))
-  c=np.log(nii[i]/ni)
-  f.append(b-a+c)
-print(f)
-#classification into groups
-for i in range(1,len(f)):
- t=f[0]
- if(f[i]>t):
-  print('classify new observation into',i+1,'population')
-
- else:
-  print('classify new observation into 1st population') `;
-      const companal = `import numpy as np
-import numpy.linalg as linalg
-import math
-#reading inputs
-a=[]
-n=int(input("enter no of variables"))
-for i in range(n):
- q=[float(x) for x in input().split(" ")]
- a.append(q)
-X=np.transpose(a)
-#calculating mean
-print('\nGven Matrix is :\n{}'.format(X))
-print('\nMean Values {}'.format(np.mean(X,axis=0)))
-A = (X - np.mean(X, axis=0))
-print('\nStandardized Matrix is :\n {}'.format(A))
-#variance covariance matrix
-VarCov=np.dot(np.transpose(A),A)/len(X)
-print('\nVariance Covariance Matrix is :\n {}'.format(VarCov))
-#calculating eigen values and vectors
-eigenValues, eigenVectors = linalg.eig(VarCov)
-idx = eigenValues.argsort()[::-1]
-eigenValues = eigenValues[idx]
- 
-eigenVectors = eigenVectors[:,idx]
-print('\nEigen Values are {}'.format(eigenValues))
-print('\nEigen Vectors are {}'.format(eigenVectors))
-#no of principal components to be retained
-k=int(input("enter threshold limit :"))
-s=sum(eigenValues)
-t=[]
-stoppoint=1
-for i in range(len(eigenValues)):
- numerator=sum(eigenValues[0:i+1])
- z=(numerator/s)*100
- if z<=k:
-  stoppoint=stoppoint+1
- t.append(z)
-print('\nThreshold Table :\n{}'.format(t))
-eigenValues=eigenValues[0:stoppoint]
-eigenVectors=eigenVectors[:,0:stoppoint]
-#retaining eigen values and vectors
-print('\nRetained Eigen Values :\n{}'.format(eigenValues))
-print('\nRetained Eigen Vectors: \n{}'.format(eigenVectors))
-#printing z1 and z2
-print('\n PCA Matrix :\n{}'.format(np.dot(X,eigenVectors)))`;
-      const factanal = `import numpy as np
-n=int(input("enter no of variables"))
-x=[]
-for i in range(n):
- p=[int(x) for x in input().split(" ")]
- x.append(p)
-print(x)
-mu=[]
-for i in range(n):
- mu.append(np.mean(x[i],axis=0))
-print("mean is : ")
-print(mu)
-from math import sqrt
-from statistics import mean
-n1=len(x[0])
-si=[]
-x=np.array(x)
-for i in range(n):
- k=sum((x[i]-mu[i])**2)
- si.append(round(sqrt(k/(n1-1)),4))
-print("variance is :" )
-print(si)
-a=[]
-for i in range(n):
- a.append((x[i]-mu[i])/si[i])
-print(a)
-A=np.transpose(a)
-#variance covariance matrix
-VarCov=np.dot(np.transpose(A),A)/n1
-print('\nVariance Covariance Matrix is :\n {}'.format(VarCov))
-#calculating eigen values and vectors
-eigenValues, eigenVectors = np.linalg.eig(VarCov)
-idx = eigenValues.argsort()[::-1]
-eigenValues = eigenValues[idx]
-eigenVectors = eigenVectors[:,idx]
-print('\nEigen Values are {}'.format(eigenValues))
-print('\nEigen Vectors are {}'.format(eigenVectors))
-#no of principal components to be retained
-k=int(input("enter threshold limit :"))
-s=sum(eigenValues)
-t=[]
-stoppoint=1
-for i in range(len(eigenValues)):
- numerator=sum(eigenValues[0:i+1])
- z=(numerator/s)*100
- if z<=k:
-  stoppoint=stoppoint+1
- t.append(z)
-print('\nThreshold Table :\n{}'.format(t))
-eigenValues=eigenValues[0:stoppoint]
-eigenVectors=eigenVectors[:,0:stoppoint]
-#retaining eigen values and vectors
-print('\nRetained Eigen Values :\n{}'.format(eigenValues))
-print('\nRetained Eigen Vectors: \n{}'.format(eigenVectors))
-egv=np.transpose(eigenVectors)
-f=[]
-for i in range(len(egv)):
- o=[]
- for j in range(n):
-  k=sqrt(eigenValues[i])*egv[i][j]
- o.append(k)
- f.append(o)
-print("F1 and f2 values are :")
-print(f)
-h=[]
-for i in range(len(f[0])):
- h.append(f[0][i]**2+f[1][i]**2)
-print("h2 values are : ")
-print(h)
-sumh=sum(h)
-print(sumh)
-pve=[]
-for i in range(len(eigenValues)):
- pve.append((eigenValues[i]/sumh)*100)
-print("percentages are : \n")
-print(pve)`;
-      const bestfit = `import numpy as np
-import matplotlib.pyplot as plt
-def lenth(n):
-    c=0
-    for i in n:
-        c+=1
-    return c
-
-
-def c_mean(n):
-    total = 0
-    for num in n:
-        total += num
-    meann = total / lenth(n)
-    return meann
-def c_sum(n):
-    total = 0
-    for num in n:
-        total += num
-    return total
-x = np.array([1, 2, 3, 4, 6,8])
-y = np.array([2.4, 3, 3.6, 4,5, 6])
-
-x_mean = c_mean(x)
-y_mean = c_mean(y)
-
-b= c_sum((x - x_mean) * (y - y_mean)) / c_sum((x - x_mean) ** 2)
-
-a = y_mean - b* x_mean
-
-
-plt.scatter(x, y, color='b', label='Data Points')
-
-plt.plot(x, b*x + a, color='r', label='Best Fit Line')
-
-plt.xlabel('x')
-plt.ylabel('y')
+declare
+		n number:=&no;
+		s number;
+begin
+		s:=incr(n);
+		dbms_output.put_line('incr salary'||s);
+		update emp2 set sal=sal+s where empno=n;
+end;
+4
+create or replace procedure annual_pay as
+ CURSOR ann_sal is
+ select ename,12*(sal+nvl(comm,0)) annual_sal from emp;
+  enam varchar2(20);
+  a_sal number;
+ begin
+open ann_sal;
+loop
+fetch ann_sal into enam,a_sal;
+dbms_output.put_line('Name: '||enam||'  Annual sal: '||a_sal);
+exit when ann_sal%notfound;
+end loop;
+close ann_sal;
+end;
+5 
+create or replace trigger sal_check
+before update on emp 
+for each row 
+begin 
+if :new.sal< :old.sal then 
+raise_application_error(-20006,'You Cannot Decrease an emp''s Sal'); 
+end if; 
+end;
+6
+ create or replace trigger audit_trial
+	after update or delete on persinfo for each row
+declare
+	eno    number;
+	ename  varchar2(12);
+	eage   number;
+	op     varchar2(12);
+begin
+	if updating then op:='update';
+	elsif deleting then op:='delete';
+	end if;
+	eno    :=  :old.empno;
+	ename  :=  :old.name;
+	eage   :=  :old.age;
+	insert into auditpersinfo
+	values(eno,ename,eage,op,sysdate);
+end;
 `;
-      const seconddeg = `import numpy as np
-import matplotlib.pyplot as plt
-from sympy import symbols, Eq, solve
-
-def get_data_input():
-    x_data = np.array([int(i) for i in input("Enter the x data: ").split()])
-    y_data = np.array([int(i) for i in input("Enter the y data: ").split()])
-    return x_data, y_data
-
-def calculate_coefficients(x_data, y_data):
-    n = len(x_data)
-    sx = np.sum(x_data)
-    sy = np.sum(y_data)
-    sx2 = np.sum(x_data * x_data)
-    sxy = np.sum(x_data * y_data)
-    sx3 = np.sum(x_data * x_data * x_data)
-    sx4 = np.sum(x_data ** 4)
-    sx2y = np.sum(x_data * x_data * y_data)
-    
-    a, b, c = symbols('a b c')
-    eq1 = Eq((n * a + sx * b + sx2 * c), sy)
-    eq2 = Eq((a * sx + sx2 * b + sx3 * c), sxy)
-    eq3 = Eq((a * sx2 + sx3 * b + sx4 * c), sx2y)
-    
-    coefficients = solve((eq1, eq2, eq3), (a, b, c))
-    return coefficients[a], coefficients[b], coefficients[c]
-
-def plot_parabola(x_data, y_data, a, b, c):
-    plt.scatter(x_data, y_data)
-    x_values = np.linspace(min(x_data), max(x_data), 100)
-    y_values = a + b * x_values + c * x_values**2
-    plt.plot(x_values, y_values, color='red')
-    plt.xlabel('X')
-    plt.ylabel('Y')
-    plt.title('Parabolic Regression')
-    plt.show()
-
-def main():
-    x_data, y_data = get_data_input()
-    a, b, c = calculate_coefficients(x_data, y_data)
-    print("The equation of parabola is y = {} + {}X + {}X^".format(a, b, c))
-    plot_parabola(x_data, y_data, a, b, c)
-
-if __name__ == "__main__":
-    main()
+      const prog2 = `SQL> SELECT INITCAP (DNAME) "DNAME" FROM  DEPT;
+SQL> SELECT ENAME || ' [  ' || JOB || 'RS.' || SAL || '] '  AS JOB_SAL FROM EMPLOYEE;
+SQL> SELECT DNAME, LENGTH (DNAME)-LENGTH (REPLACE (DNAME,'S'))
+           FROM DEPT  GROUP BY DNAME;
+SQL>(SELECT DNAME FROM DEPT) MINUS
+( SELECT   DNAME
+           FROM EMPLOYEE E, DEPT D
+          WHERE E.DEPTNO = D.DEPTNO )
+SQL>SELECT * FROM EMPLOYEE 
+         WHERE (TO_CHAR (HIREDATE,'YYYY') BETWEEN 1980 AND 1990) AND
+         (TO_CHAR (HIREDATE,'w') = 2);
+SQL> SELECT TO_CHAR(SYSDATE,'DAY  DDth YYYY HH:MI:SS pm') "DATE"
+           FROM DUAL;
+SQL>  SELECT * FROM EMP WHERE 
+TRIM(TO_CHAR(HIREDATE,'DAY')) = 'WEDNESDAY'  AND 
+HIREDATE BETWEEN LAST_DAY(HIREDATE)-6 AND LAST_DAY(HIREDATE)  AND
+MONTHS_BETWEEN(SYSDATE, HIREDATE) > 20;
+SQL> SELECT ENAME, HIREDATE, ROUND ((SYSDATE-HIREDATE)/365) "SERVICE IN YEARS"    FROM EMPLOYEE;
+SQL> SELECT ENAME, DECODE (SIGN (1500-SAL), 1 ,'BELOW THE TARGET', 
+            0, 'ON THE TARGET', ' ABOVE THE TARGET ' )  "TARGET"
+             FROM EMPLOYEE; 
+SQL> SELECT ENAME, EMPNO, DNAME, GRADE
+          FROM DEPT, EMPLOYEE E, SALGRADE
+          WHERE E.DEPTNO=DEPT.DEPTNO AND E.DEPTNO=30 AND 
+          SAL BETWEEN LOSAL AND HISAL;
+SQL>SELECT TO_CHAR(SYSDATE,’HH:MI:SS’) FROM DUAL;
+SQL> SELECT ENAME, SAL  FROM EMPLOYEE E 
+          		WHERE SAL  >
+ (SELECT AVG (SAL) FROM EMPLOYEE WHERE DEPTNO = E.DEPTNO );
+SQL> SELECT S.ENAME, COUNT (*) "NOOFSUBORDINATES"
+           FROM EMPLOYEE S, EMPLOYEE E
+          WHERE E.MGR=S.EMPNO 
+          GROUP BY S.ENAME;
+SQL> SELECT S.ENAME, COUNT (*) "NOOFSUBORDINATES"
+           FROM EMPLOYEE S, EMPLOYEE E
+          WHERE E.MGR=S.EMPNO
+          GROUP BY S.ENAME
+          HAVING COUNT (*)  =  (SELECT MAX (COUNT (*))
+                                FROM EMPLOYEE E, EMPLOYEE S
+                                WHERE E.MGR=S.EMPNO
+                                GROUP BY S.ENAME);
+SQL> SELECT ENAME, SAL
+           FROM EMPLOYEE    E
+           WHERE 3> (SELECT COUNT (*) FROM EMPLOYEE   F   WHERE E.SAL<F.SAL);
+SQL> SELECT E.ENAME, E.HIREDATE, M.ENAME "MGRNAME", M.HIREDATE   
+            "MGRHIREDATE"   FROM EMPLOYEE E, EMPLOYEE M
+          WHERE E.MGR=M.EMPNO AND E.HIREDATE<M.HIREDATE;
+SQL> SELECT TO_CHAR (HIREDATE,'YYYY') "YEAR", COUNT (*)"NOOFEMPL"
+           FROM EMPLOYEE
+          GROUP BY TO_CHAR (HIREDATE,'YYYY')
+          HAVING COUNT (*) =(SELECT MAX(COUNT(*))
+           FROM EMPLOYEE
+           GROUP BY TO_CHAR (HIREDATE,'YYYY'));
+SQL>SELECT TO_CHAR (TO_DATE (‘&DATE’, ’DD: MM: YY’), ’DAY’) FROM DUAL;
 `;
-      const karlpearson = `import numpy as np
-import matplotlib.pyplot as plt
-def lenth(n):
-    c=0
-    for i in n:
-        c+=1
-    return c
+      const prog3_12 = `CREATE TABLE Inventory (
+Product_ID NUMBER,
+Product_name VARCHAR2(100),
+    Quantity NUMBER
+);
 
+INSERT INTO Inventory (Product_ID, Product_name, Quantity) VALUES (1, 'Product A', 10);
+INSERT INTO Inventory (Product_ID, Product_name, Quantity) VALUES (2, 'Product B', -5);
+INSERT INTO Inventory (Product_ID, Product_name, Quantity) VALUES (3, 'Product C', 20);
 
-def c_mean(n):
-    total = 0
-    for num in n:
-        total += num
-    meann = total / lenth(n)
-    return meann
-def c_sum(n):
-    total = 0
-    for num in n:
-        total += num
-    return total
+DECLARE
+v_quantity NUMBER;
+BEGIN
+    FOR rec IN (SELECT * FROM Inventory WHERE Quantity < 0) LOOP
+        DBMS_OUTPUT.PUT_LINE('Quantity for product ' || rec.Product_name || ' is negative. Updating to 0.');
 
-x = np.array([3,7,4,2,0,4,1,2])
-y = np.array([11,18,9,4,7,6,3,8])
+        UPDATE Inventory
+        SET Quantity = 0
+        WHERE Product_ID = rec.Product_ID;
+    END LOOP;
 
-x_mean = c_mean(x)
-print("mean of x is",x_mean)
-y_mean = c_mean(y)
-print("mean of y is",y_mean)
-
-cov=(c_sum((x - x_mean) * (y - y_mean)))/lenth(x)
-print(cov)
-sig_x=((c_sum((x - x_mean)**2))/lenth(x))**0.5
-print(sig_x)
-sig_y=((c_sum((y - y_mean)**2))/lenth(y))**0.5
-print(sig_y)
-r=cov/(sig_x * sig_y)
-print("correlation coefficient is",r)
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('An error occurred: ' || SQLERRM);
+        -- Rollback the transaction
+        ROLLBACK;
+END;
 `;
-      const spearman = `import pandas as pd
-import numpy as np
-from collections import Counter
+      const prog3_11 = `CREATE TABLE nonexistent_table (
+    id NUMBER
+);
 
-def calculate_modified_di(x, y):
-    d1 = Counter(x)
-    cf = 0
-    d2 = Counter(y)
-    for i in d1:
-        if d1[i] > 1:
-            cf += d1[i] * (d1[i] * d1[i] - 1) / 12
-    for i in d2:
-        if d2[i] > 1:
-            cf += d2[i] * (d2[i] * d2[i] - 1) / 12
-    return cf
+CREATE TABLE employees (
+emp_id NUMBER,
+emp_name VARCHAR2(100)
+);
 
-def calculate_spearman_correlation_coefficient(x, y):
-    df_x = pd.DataFrame(x)
-    rx = df_x.rank()[0].to_numpy()
-    df_y = pd.DataFrame(y)
-    ry = df_y.rank()[0].to_numpy()
-    D = rx - ry
-    di2 = np.sum(D * D) + calculate_modified_di(x, y)
-    n = len(x)
-    cc = 1 - (6 * di2 / (n * (n * n - 1)))
-    return cc
-
-def display_results(x, y, rx, ry, D):
-    results = pd.DataFrame({"X": x, "Y": y, "Rₓ": rx, "Rᵧ": ry, "D": D, "D&#178;": D * D})
-    print(results.to_string(index=False))
-
-def main():
-    x = np.array(list(map(float, input("Enter X values: ").split())))
-    y = np.array(list(map(float, input("Enter Y values: ").split())))
-    df_x = pd.DataFrame(x)
-    rx = df_x.rank()[0].to_numpy()
-    df_y = pd.DataFrame(y)
-    ry = df_y.rank()[0].to_numpy()
-    D = rx - ry
-    display_results(x, y, rx, ry, D)
-    correlation_coefficient = calculate_spearman_correlation_coefficient(x, y)
-    print("Spearman's Correlation Coefficient =", round(correlation_coefficient, 4))
-
-if __name__ == "__main__":
-    main()
-
-'''import pandas as pd
-import numpy as np
-
-def Rankify(data):
-    N = len(data)
-    Ranks = [None for i in range(N)]
-
-    for i in range(N):
-        BigNums = 0
-        SameNums = 0
-
-        for j in range(N):
-            if (data[j] > data[i]):
-                BigNums += 1
-            if (data[j] == data[i]):
-                SameNums += 1
-
-        # Use Fractional Rank formula
-        # fractional_rank = (BigNums+1) + (SameNums-1)/2
-        Ranks[i] = (BigNums+1) + (SameNums-1)/2
-
-    return Ranks
-
-def RemDups(data):
-    set_data = []
-
-    for i in data:
-        if i not in set_data:
-            set_data.append(i)
-
-    return set_data
-
-def CF(x,y):
-    cf = 0
-    x = list(x)
-    y = list(y)
-    set_x = RemDups(x)
-    set_y = RemDups(y)
-
-    for i in set_x:
-        count_x = x.count(i)
-        if count_x > 1:
-            cf += (count_x * (count_x**2 - 1)) / 12
-
-    for i in set_y:
-        count_y = y.count(i)
-        if count_y > 1:
-            cf += (count_y * (count_y**2 - 1)) / 12
-
-    return cf
-
-def SRCC(x,y):
-    n = len(x)
-    m = len(y)
-
-    if n != m:
-        print("Invalid Data!")
-        return
-
-    RankX = np.array(Rankify(x))
-    RankY = np.array(Rankify(y))
-
-    # Difference of Ranks:
-    Di = RankX - RankY
-    DiSq = Di**2
-
-    SumDiSq = sum(DiSq)
-
-    # Correction Factor:
-    cf = CF(x,y)
-    SumDiSq += cf
-
-    SRCC = 1 - ((6 * SumDiSq) / (n * (n**2 - 1)))
-
-    SRCC_Table = {
-        "X values": x,
-        "Y values": y,
-        "Ranks of X": RankX,
-        "Ranks of Y": RankY,
-        "Di values": Di,
-        "Di sq. values": DiSq}
-
-    print(pd.DataFrame(SRCC_Table))
-
-    print("Correction Factor: ",cf)
-    print("Sum of Di sq: ",SumDiSq)
-    print("The Spearman's Ranked Correlation Coefficient of the given data: {:.4f}".format(SRCC))
-
-x = np.array([float(i) for i in input("Enter x values: ").strip().split()])
-y = np.array([float(i) for i in input("Enter y values: ").strip().split()])
-
-SRCC(x,y)
-'''    `;
-      const twoanova = `import pandas as pd
-import scipy.stats as se
-
-def calculate_SS_and_F_values(t, h, k, alpha):
-    Ti = Bj = G = RSS = N = 0
-
-    for i in t:
-        Ti += sum(i) * sum(i)
-        G += sum(i)
-    
-    for i in range(len(t[0])):
-        position_sum = sum(sublist[i] for sublist in t)
-        Bj += position_sum ** 2
-    
-    for i in t:
-        for j in i:
-            RSS += j * j
-            N += 1
-            
-    CF = round(G * G / N, 2)
-    SST = round(RSS - CF, 2)
-    SStr = round(Ti / h - CF, 2)
-    SSb = round(Bj / k - CF, 2)
-    SSe = round(SST - SStr - SSb, 2)
-    
-    Ftr = round((SStr / (k - 1)) / (SSe / ((k - 1) * (h - 1))), 3)
-    Fb = round((SSb / (h - 1)) / (SSe / ((k - 1) * (h - 1))), 3)
-    
-    return SStr, SSb, SSe, SST, Ftr, Fb
-
-def generate_summary_table(SStr, SSb, SSe, SST, k, h, alpha, Ftr, Fb):
-    data = {
-        "Source of Variation": ["Treatments", "Blocks", "Error", "Total"],
-        'Sum of Squares': [SStr, SSb, SSe, SST],
-        'DOF': [k - 1, h - 1, (h - 1) * (k - 1), k * h - 1],
-        'Mean Sum of Squares': [round(SStr / (k - 1), 2), round(SSb / (h - 1), 2), round(SSe / ((k - 1) * (h - 1)), 2), "-"],
-        'Variance Ratio': ["-", Ftr, Fb, "-"]
-    }
-    df = pd.DataFrame(data)
-    print(df.to_string(index=False))
-    return Ftr, Fb
-
-def inference(Ftr, Fb, k, h, alpha):
-    if Ftr > 1:
-        Ftabtr = round(se.f.ppf(q=1 - alpha, dfn=k - 1, dfd=(k - 1) * (h - 1)), 2)
-    else:
-        Ftabtr = round(se.f.ppf(q=1 - alpha, dfn=(k - 1) * (h - 1), dfd=k - 1), 2)
-    
-    print("\n---Inference related to Treatments---")
-    print("F calculated value =", Ftr, "\nF table value =", Ftabtr)
-    if Ftr < Ftabtr:
-        print("Since Fcal.<Ftable value, We accept H₀(tr).")
-    else:
-        print("Since Fcal.>Ftable value, We reject H₀(tr).")
-    
-    if Fb > 1:
-        Ftabb = round(se.f.ppf(q=1 - alpha, dfn=h - 1, dfd=(k - 1) * (h - 1)), 2)
-    else:
-        Ftabb = round(se.f.ppf(q=1 - alpha, dfn=(k - 1) * (h - 1), dfd=h - 1), 2)
-    
-    print("\n---Inference related to Blocks---")
-    print("F calculated value =", Fb, "\nF table value =", Ftabb)
-    if Fb < Ftabb:
-        print("Since Fcal.<Ftable value, We accept H₀(b).")
-    else:
-        print("Since Fcal.>Ftable value, We reject H₀(b).")
+INSERT INTO employees (emp_id, emp_name) VALUES (1, 'John Doe');
+INSERT INTO employees (emp_id, emp_name) VALUES (2, 'John Doe'); 
+DECLARE
+v_result NUMBER;
+BEGIN
+    BEGIN
+        SELECT COUNT(*) INTO v_result FROM nonexistent_table;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            DBMS_OUTPUT.PUT_LINE('NO_DATA_FOUND: No data found for the query.');
+    END;
 
 
-def main():
-    h = int(input("Enter no. of Blocks: "))
-    k = int(input("Enter no. of Treatments: "))
-    t = []
-    for i in range(k):
-        t.append(list(map(int, input("Enter treatment(s): ").split())))
-    
-    alpha = float(input("Enter Level of Significance: "))
-    
-    SStr, SSb, SSe, SST, Ftr, Fb = calculate_SS_and_F_values(t, h, k, alpha)
-    df = generate_summary_table(SStr, SSb, SSe, SST, k, h, alpha, Ftr, Fb)
-    inference(Ftr, Fb, k, h, alpha)
+    BEGIN
+        SELECT emp_id INTO v_result FROM employees WHERE emp_name = 'John Doe';
+    EXCEPTION
+        WHEN TOO_MANY_ROWS THEN
+            DBMS_OUTPUT.PUT_LINE('TOO_MANY_ROWS: More than one row returned for the query.');
+    END;
 
-if __name__ == "__main__":
-    main()
 
+    BEGIN
+v_result := 10 / 0;
+    EXCEPTION
+        WHEN ZERO_DIVIDE THEN
+            DBMS_OUTPUT.PUT_LINE('ZERO_DIVIDE: Division by zero occurred.');
+    END;
+END;
 `;
-      const mutli = `import numpy as np
-import pandas as pd
-import scipy.stats as se
+      const prog3_10 = `CREATE TABLE Bank_Main (
+Acc_no NUMBER,
+    Name VARCHAR2(50),
+    Address VARCHAR2(100),
+Acc_type VARCHAR2(1),
+Curr_balance NUMBER
+);
 
-def transpose(A):
- r=len(A)
- c=len(A[0])
- s=[]
- for i in range(0,c):
-  n=[]
-  for j in range(0,r):
-    n.append(A[j][i])
-  s.append(n)
- return s
-#matrix multiplication
-def multiplication(A,B):
- res=[]
- r1=len(A)
- c2=len(B[0])
- for i in range(r1):
-  k=[]
-  for j in range(c2):
-    k.append(0)
-  res.append(k)
- for i in range(len(A)):
-  for j in range(len(B[0])):
-    for k in range(len(B)):
-      res[i][j]=res[i][j]+A[i][k]*B[k][j]
- return res
-#matrix inverse
-def getMinor(m,i,j):
- return [row[:j] + row[j+1:] for row in (m[:i]+m[i+1:])]
-def getDeternminant(m):
- #base case for 2x2 matrix
- if len(m) == 2:
-  return m[0][0]*m[1][1]-m[0][1]*m[1][0]
- determinant = 0
- for c in range(len(m)):
-  determinant += ((-1)**c)*m[0][c]*getDeternminant(getMinor(m,0,c))
- return determinant
-def inverse(m):
- determinant = getDeternminant(m)
- #special case for 2x2 matrix:
- if len(m) == 2:
-  return [[m[1][1]/determinant, -1*m[0][1]/determinant],
- [-1*m[1][0]/determinant, m[0][0]/determinant]]
- #find matrix of cofactors
- cofactors = []
- for r in range(len(m)):
-  cofactorRow = []
-  for c in range(len(m)):
-    minor = getMinor(m,r,c)
- cofactorRow.append(((-1)**(r+c)) * getDeternminant(minor))
- cofactors.append(cofactorRow)
- cofactors = transpose(cofactors)
- for r in range(len(cofactors)):
-  for c in range(len(cofactors)):
-    cofactors[r][c] = cofactors[r][c]/determinant
- return cofactors
- 
+CREATE TABLE Bank_Trans (
+Acc_no NUMBER,
+Tr_type VARCHAR2(1),
+Tr_date DATE,
+Tr_amt NUMBER,
+Upd_flag VARCHAR2(1)
+);
 
-alpha = float(input("Enter Level of Significance: "))
-y = np.array(list(map(int, input("Enter Dependent Variable Values(Y): ").split())))
-n = int(input("Enter num. of Independent Variables: "))
-N = len(y)
-x = []
-temp = []
-t = [1] * len(y)
-x.append(t)
+INSERT INTO Bank_Main (Acc_no, Name, Address, Acc_type, Curr_balance)
+VALUES (1, 'John Doe', '123 Main St', 'S', 1000);
 
-for i in range(n):
-    u = list(map(int, input("Enter Independent Variables Values(X values): ").split()))
-    x.append(u)
-    temp.append(u)
+INSERT INTO Bank_Main (Acc_no, Name, Address, Acc_type, Curr_balance)
+VALUES (2, 'Jane Smith', '456 Elm St', 'C', 500);
 
-temp = np.array(temp)
-x = np.array(x)
-x = np.transpose(x)
-y = np.transpose(y)
-beta = np.dot(np.linalg.inv(np.dot(transpose(x), x)), np.dot(transpose(x), y))
+INSERT INTO Bank_Trans (Acc_no, Tr_type, Tr_date, Tr_amt, Upd_flag)
+VALUES (1, 'D', TO_DATE('2024-04-13', 'YYYY-MM-DD'), 200, 'N');
 
-print("Y = ", end="", sep="")
-for i in range(len(beta)):
-    if i == len(beta) - 1:
-        print(round(beta[i], 4), "X", i, end="\n", sep="")
-    else:
-        print(round(beta[i], 4), "X", i, " + ", end="", sep="")
+INSERT INTO Bank_Trans (Acc_no, Tr_type, Tr_date, Tr_amt, Upd_flag)
+VALUES (2, 'W', TO_DATE('2024-04-14', 'YYYY-MM-DD'), 100, 'N');
 
-ycap = []
-for i in range(len(y)):
-    ycap.append(beta[0] + temp[0][i] * beta[1] + temp[1][i] * beta[2])
+-- Enable output display
+SET SERVEROUTPUT ON;
 
-sigma = y - ycap
-SSe = SST = 0
-for i in range(len(sigma)):
-    SSe += round(sigma[i] * sigma[i], 2)
-    SST += round((y[i] - np.mean(y)) ** 2, 2)
+DECLARE
+v_acc_noBank_Trans.Acc_no%TYPE;
+v_tr_typeBank_Trans.Tr_type%TYPE;
+v_tr_amtBank_Trans.Tr_amt%TYPE;
+BEGIN
+    FOR trans_rec IN (SELECT * FROM Bank_Trans WHERE Upd_flag = 'N') LOOP
+v_acc_no := trans_rec.Acc_no;
+v_tr_type := trans_rec.Tr_type;
+v_tr_amt := trans_rec.Tr_amt;
 
-SSr = SST - SSe
-R2 = round(SSr / SST, 2)
-print("R² value is:", R2)
+        IF v_tr_type = 'D' THEN
+            UPDATE Bank_Main
+            SET Curr_balance = Curr_balance + v_tr_amt
+            WHERE Acc_no = v_acc_no;
+        ELSIF v_tr_type = 'W' THEN
+            UPDATE Bank_Main
+            SET Curr_balance = Curr_balance - v_tr_amt
+            WHERE Acc_no = v_acc_no;
+        END IF;
 
-if R2 > 0.9:
-    print("The Model is a Good Fit.")
-else:
-    print("The Model is Not a Good Fit.")
+        UPDATE Bank_Trans
+        SET Upd_flag = 'Y'
+        WHERE Acc_no = v_acc_no
+        AND Tr_type = v_tr_type
+        AND Tr_amt = v_tr_amt;
 
-n = n + 1
-F = round((SSr / (n - 1)) / (SSe / (N - n)), 3)
-data = {
-    "Source of Variation": ["Regression", "Error", "Total"],
-    'Sum of Squares': [SSr, SSe, SST],
-    'DOF': [n - 1, N - n, N - 1],
-    'Mean Sum of Squares': [round(SSr / (n - 1), 2), round(SSe / (N - n), 2), "-"],
-    'Variance Ratio': ["-", F, "-"]
-}
-df = pd.DataFrame(data).to_string(index=False)
-print(df)
+        DBMS_OUTPUT.PUT_LINE('Transaction updated for Acc_no: ' || v_acc_no);
+    END LOOP;
 
-if F > 1:
-    Ftab = round(se.f.ppf(q=1 - alpha, dfn=n - 1, dfd=N - n), 2)
-else:
-    F = round(1 / F, 2)
-    Ftab = round(se.f.ppf(q=1 - alpha, dfn=N - n, dfd=n - 1), 2)
-
-print("F calculated value =", F, "\nF table value =", Ftab)
-
-if F < Ftab:
-    print("Since Fcal.<Ftable value, We accept H₀.")
-else:
-    print("Since Fcal.>Ftable value, We reject H₀.")
-
-'''import numpy as np
-
-def mat_multiply(mat1, mat2):
-    if mat1.shape[1] != mat2.shape[0]:
-        print("Cannot multiply the matrices!!")
-        return
-
-    mat3 = np.zeros([mat1.shape[0],mat2.shape[1]], dtype=float)
-
-    for i in range(len(mat1)):
-        for j in range(len(mat2[0])):
-            for k in range(len(mat2)):
-                mat3[i][j] += mat1[i][k] * mat2[k][j]
-
-    return mat3
-
-def mat_transpose(mat):
-    result = np.zeros((mat.shape[1], mat.shape[0]), dtype=float)
-
-    for i in range(mat.shape[0]):
-       for j in range(mat.shape[1]):
-           result[j][i] = mat[i][j]
-
-    return result
-
-Y_dim = int(input("Enter number of Y variables: "))
-X_dim = int(input("Enter number of X variables: "))
-
-Y = []
-X = []
-
-for i in range(Y_dim):
-    Y_row = np.array([float(j) for j in input(f"Enter Y{i} values: ").strip().split()])
-    Y.append(Y_row)
-
-X.append(np.array([1 for i in range(len(Y[0]))]))
-for i in range(1, X_dim):
-    X_row =  np.array([float(j) for j in input(f"Enter X{i} values: ").strip().split()])
-    X.append(X_row)
-
-Y = np.array(Y)
-X = np.array(X)
-
-XTX = mat_multiply(X, mat_transpose(X))
-
-XTX_inv = np.linalg.inv(XTX)
-
-XTY = mat_multiply(X,mat_transpose(Y))
-
-Beta = mat_transpose(mat_multiply(XTX_inv,XTY))
-eta = mat_transpose(mat_multiply(XTX_inv,XTY))
-
-Yfitted = []
-for i in range(len(Y)):
-    row = 0
-    for j in range(len(X)):
-        row += Beta[i][j]*X[j]
-    Yfitted.append(row)
-
-Yfitted = np.array(Yfitted)
-
-print("\nThe Multi Variate Linear Regression Models for the given data:")
-for i in range(len(Y)):
-    output = f"Y{i} = ({round(Beta[i][0],4)})"
-    for j in range(1, len(X)):
-        output += f" + ({round(Beta[i][j],4)})X{j}"
-    print(output)
-'''    `;
-      const multiv = `import numpy as np
-
-def get_user_input(prompt):
-    return list(map(float, input(prompt).split()))
-
-def calculate_beta(x, y):
-    x_transpose = np.transpose(x)
-    inv_x_dot_x_transpose = np.linalg.inv(np.dot(x_transpose, x))
-    beta = np.dot(np.dot(inv_x_dot_x_transpose, x_transpose), y)
-    return beta
-    
-def print_regression_equation(beta):
-    y_expressions = []
-    for i, coefficients in enumerate(beta):
-        expression = "Y{} = ".format(i + 1)
-        for j, coef in enumerate(coefficients):
-            expression += " {}X{} +".format(coef, j + 1)
-        y_expressions.append(expression[:-2])  # remove the extra '+' and space
-    for expression in y_expressions:
-        print(expression)
-
-def main():
-    y = []
-    x = []
-    n1 = int(input("Enter num. of Dependent Variables(Y's): "))
-    n2 = int(input("Enter num. of Independent Variables(X's): "))
-
-    for i in range(n1):
-        y.append(get_user_input("Y{}: ".format(i + 1)))
-    x.append([1] * len(y[0]))
-
-    for i in range(n2):
-        x.append(get_user_input("X{}: ".format(i + 1)))
-
-    x = np.array(x)
-    y = np.array(y)
-
-    beta = calculate_beta(x, y)
-    beta = np.round(beta, decimals=2)
-    print_regression_equation(beta)
-
-if __name__ == "__main__":
-    main()
-
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('An error occurred: ' || SQLERRM);
+        ROLLBACK; -- Rollback in case of error
+END;
 `;
-      const oneanova = `#5th
-import numpy as np
-import scipy.stats as sp
-def add(lst):
-    total = 0
-    for item in lst:
-        total += item
-    return total
-def leng(lst):
-    length = 0
-    for _ in lst:
-        length += 1
-    return length
-alpha = float(input("Enter the level of significance"))
-n = int(input("Enter number of treatments: "))
-anova = []
-G = 0
-N=0
-Tss=0
-T1 = []
-T2 = []
-for i in range(n):
-    l = list(map(float, input("Enter value :").split()))
-    T1.append(add(l))
-    N += leng(l)
-    anova.append(l)
-G = add(T1)
-for i in range(n):
-    T2.append((add(anova[i])** 2)/leng(anova[i]))
-cf = G ** 2 / N
-sst = add(T2) - cf
-for l in anova:
-    for j in l:
-        Tss += j ** 2
-sstr = Tss - cf
-print("Treatment sum of squares:", sst)
-E = sstr - sst
-print("Error sum of squares:", E)
-print("Total sum of squares:", sstr)
-t1 = sst / (n - 1)
-e1 = E / (N - n)
-fcal = t1 / e1
-print("f calculated value : ",fcal)
-ftab = sp.f.ppf(1-alpha, n - 1, N - n)
-ftab=round(ftab,2)
-print("ftable value : ",ftab)
-if fcal <= ftab:
-    print("We accept H0")
-else:
-    print("We reject H0")`;
+      const prog3_9 = `CREATE TABLE EMPLOYEE (
+      EmpNo NUMBER,
+          Name VARCHAR2(50),
+          Salary NUMBER,
+          Designation VARCHAR2(50),
+      DeptID NUMBER
+      );
 
+      INSERT INTO EMPLOYEE (EmpNo, Name, Salary, Designation, DeptID)
+      VALUES (1, 'John Doe', 60000, 'Manager', 101);
+
+      INSERT INTO EMPLOYEE (EmpNo, Name, Salary, Designation, DeptID)
+      VALUES (2, 'Jane Smith', 55000, 'Assistant Manager', 101);
+
+
+      -- Enable output display
+      SET SERVEROUTPUT ON;
+
+      DECLARE
+          CURSOR c_highest_paid IS
+              SELECT EmpNo, Name, Salary, Designation, DeptID
+              FROM (
+                  SELECT EmpNo, Name, Salary, Designation, DeptID
+                  FROM EMPLOYEE
+                  ORDER BY Salary DESC
+              )
+              WHERE ROWNUM <= 5;
+
+          CURSOR c_lowest_paid IS
+              SELECT EmpNo, Name, Salary, Designation, DeptID
+              FROM (
+                  SELECT EmpNo, Name, Salary, Designation, DeptID
+                  FROM EMPLOYEE
+                  ORDER BY Salary ASC
+              )
+              WHERE ROWNUM <= 5;
+      BEGIN
+          DBMS_OUTPUT.PUT_LINE('--- Five Highest Paid Employees ---');
+          FOR emp_rec IN c_highest_paid LOOP
+              DBMS_OUTPUT.PUT_LINE('EmpNo: ' || emp_rec.EmpNo || ', Name: ' || emp_rec.Name || ', Salary: ' || emp_rec.Salary || ', Designation: ' || emp_rec.Designation || ', DeptID: ' || emp_rec.DeptID);
+          END LOOP;
+
+          DBMS_OUTPUT.PUT_LINE('--- Five Lowest Paid Employees ---');
+          FOR emp_rec IN c_lowest_paid LOOP
+              DBMS_OUTPUT.PUT_LINE('EmpNo: ' || emp_rec.EmpNo || ', Name: ' || emp_rec.Name || ', Salary: ' || emp_rec.Salary || ', Designation: ' || emp_rec.Designation || ', DeptID: ' || emp_rec.DeptID);
+          END LOOP;
+      END;
+      `;
+      const prog3_del_his = `CREATE TABLE Emp (
+          empid NUMBER,
+          name VARCHAR2(50),
+          salary NUMBER,
+      dno NUMBER
+      );
+
+      CREATE TABLE Del_History (
+      dno NUMBER,
+      Rows_deleted NUMBER,
+      Date_deleted DATE
+      );
+
+      INSERT INTO Emp (empid, name, salary, dno)
+      VALUES (1, 'John Doe', 50000, 123);
+
+      INSERT INTO Emp (empid, name, salary, dno)
+      VALUES (2, 'Jane Smith', 60000, 123);
+
+      INSERT INTO Emp (empid, name, salary, dno)
+      VALUES (3, 'Michael Johnson', 55000, 456);
+
+      INSERT INTO Emp (empid, name, salary, dno)
+      VALUES (4, 'Emily Brown', 52000, 789);
+
+
+      -- Enable output display
+      SET SERVEROUTPUT ON;
+
+      DECLARE
+      v_department_numberNUMBER := 123; -- Specify the department number
+      v_rows_deletedNUMBER := 0; -- Initialize the counter for rows deleted
+
+          CURSOR c_emp IS
+              SELECT empid
+              FROM Emp
+              WHERE dno = v_department_number;
+      BEGIN
+          FOR emp_rec IN c_emp LOOP
+              DELETE FROM Emp
+              WHERE empid = emp_rec.empid;
+
+
+      v_rows_deleted := v_rows_deleted + SQL%ROWCOUNT;
+          END LOOP;
+
+          INSERT INTO Del_History (dno, Rows_deleted, Date_deleted)
+          VALUES (v_department_number, v_rows_deleted, SYSDATE);
+
+          COMMIT;
+
+          DBMS_OUTPUT.PUT_LINE('Deletion completed successfully.');
+      EXCEPTION
+          WHEN NO_DATA_FOUND THEN
+              DBMS_OUTPUT.PUT_LINE('No employees found in the specified department.');
+          WHEN OTHERS THEN
+              DBMS_OUTPUT.PUT_LINE('An error occurred: ' || SQLERRM);
+      END;
+      `;
+
+      const prog3_grosspay = `CREATE TABLE employee (
+      eno NUMBER,
+      ename VARCHAR2(50),
+      basic_pay NUMBER
+      );
+
+      INSERT INTO employee (eno, ename, basic_pay) VALUES (1, 'John', 10000);
+      INSERT INTO employee (eno, ename, basic_pay) VALUES (2, 'Jane', 8000);
+      INSERT INTO employee (eno, ename, basic_pay) VALUES (3, 'Alice', 12000);
+      INSERT INTO employee (eno, ename, basic_pay) VALUES (4, 'Bob', 6000);
+
+      DECLARE
+      v_enoemployee.eno%TYPE;
+      v_enameemployee.ename%TYPE;
+      v_basic_payemployee.basic_pay%TYPE;
+      v_hra NUMBER;
+      v_da NUMBER;
+      v_pf NUMBER;
+      v_ptax NUMBER;
+      v_gross_salary NUMBER;
+      v_net_salary NUMBER;
+      BEGIN
+          FOR emp IN (SELECT * FROM employee) LOOP
+      v_eno := emp.eno;
+      v_ename := emp.ename;
+      v_basic_pay := emp.basic_pay;
+
+      v_hra := 0.15 * v_basic_pay;
+      v_da := 0.62 * v_basic_pay;
+              IF v_basic_pay> 8000 THEN
+      v_pf := 780;
+              ELSE
+      v_pf := 600;
+              END IF;
+      v_ptax := 0.02 * v_basic_pay;
+
+      v_gross_salary := v_basic_pay + v_hra + v_da;
+
+      v_net_salary := v_gross_salary - v_pf - v_ptax;
+
+              DBMS_OUTPUT.PUT_LINE('Employee No: ' || v_eno);
+              DBMS_OUTPUT.PUT_LINE('Employee Name: ' || v_ename);
+              DBMS_OUTPUT.PUT_LINE('HRA: ' || v_hra);
+              DBMS_OUTPUT.PUT_LINE('DA: ' || v_da);
+              DBMS_OUTPUT.PUT_LINE('PF: ' || v_pf);
+              DBMS_OUTPUT.PUT_LINE('Professional Tax: ' || v_ptax);
+              DBMS_OUTPUT.PUT_LINE('Gross Salary: ' || v_gross_salary);
+              DBMS_OUTPUT.PUT_LINE('Net Salary: ' || v_net_salary);
+              DBMS_OUTPUT.PUT_LINE('-----------------------');
+          END LOOP;
+      END;
+      `;
+      const prog3_product = `CREATE TABLE Inventory (
+            Product_ID NUMBER,
+            Product_name VARCHAR2(20),
+                Quantity NUMBER
+            );
+
+            CREATE TABLE Purchase_Record (
+            Product_ID NUMBER,
+            Purchase_Status VARCHAR2(20),
+            Purchase_Date DATE
+            );
+            insert into Inventory values(123,'dairy milk',120);
+            insert into Purchase_Record
+            select 123, 'Purchased', TO_DATE('2024-01-01', 'YYYY-MM-DD')
+            from dual;
+
+            SET SERVEROUTPUT ON;
+
+            DECLARE
+            v_product_idNUMBER := 123; -- Assign a value to the product ID
+            v_quantity NUMBER;
+            v_status VARCHAR2(20);
+            BEGIN
+                SELECT Quantity INTO v_quantity
+                FROM Inventory
+                WHERE Product_ID = v_product_id;
+
+                IF v_quantity> 0 THEN
+                    UPDATE Inventory
+                    SET Quantity = Quantity - 1
+                    WHERE Product_ID = v_product_id;
+            v_status := 'PURCHASED';
+                ELSE
+            v_status := 'OUT OF STOCK';
+                END IF;
+
+
+                INSERT INTO Purchase_Record (Product_ID, Purchase_Status, Purchase_Date)
+                VALUES (v_product_id, v_status, SYSDATE);
+
+                COMMIT;
+
+                DBMS_OUTPUT.PUT_LINE('Transaction recorded successfully.');
+            EXCEPTION
+                WHEN NO_DATA_FOUND THEN
+                    DBMS_OUTPUT.PUT_LINE('Product not found in inventory.');
+                WHEN OTHERS THEN
+                    DBMS_OUTPUT.PUT_LINE('An error occurred: ' || SQLERRM);
+            END;
+            `;
       function copyToClipboard(code) {
         navigator.clipboard.writeText(code).then(
           function () {
